@@ -28,6 +28,7 @@ export default function New() {
     function handleCreateProduct(data: FormData) {
         alert("Produto cadastrado com sucesso!")
         console.log(data)
+
     }
 
     return (
