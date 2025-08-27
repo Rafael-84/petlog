@@ -21,10 +21,6 @@ export default function DashboardProdutos() {
                         <CardDescription className="text-slate-700 font-medium"> 1.300</CardDescription>
                     </Card>
                     <Card className="flex-1  flex items-center justify-center w-full px-2 bg-white border-[1px] border-[#6C0020] ">
-                        <CardTitle className="font-bold text-gray-800">Total de produtos em estoque </CardTitle>
-                        <CardDescription className="text-slate-700 font-medium"> 2.300</CardDescription>
-                    </Card>
-                    <Card className="flex-1  flex items-center justify-center w-full px-2 bg-white border-[1px] border-[#6C0020] ">
                         <CardTitle className="font-bold text-gray-800">Total entrada de produtos </CardTitle>
                         <CardDescription className="text-slate-700 font-medium"> 2.300</CardDescription>
                     </Card>
