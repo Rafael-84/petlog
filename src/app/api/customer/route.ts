@@ -1,8 +1,7 @@
-import { NextResponse } from "next/server"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/lib/auth"
-import prismaClient from "@/lib/prisma"
-import { error } from "console";
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import prismaClient from "@/lib/prisma";
 
 
 

@@ -1,18 +1,22 @@
 "use client"
 import { useState } from "react";
-import { HeaderCategoria } from "../../components/headerCategoria"
-import { Recomendado } from "@/components/recomendados";
 import Image from "next/image";
-import dogAmarelo from "../../../public/hero-dog.webp";
-import { Container } from "@/components/container";
 
-
-import produto1 from "../../../public/areia-gato.png";
-import { RecomendadoProps } from "@/components/recomendados";
 import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react";
+
+import { HeaderCategoria } from "../../components/headerCategoria"
+import { Container } from "@/components/container";
+import { Recomendado } from "@/components/recomendados";
 import { NossosServicos } from "../components/home/servicos";
 import { Marcas } from "../components/home/marcas";
 import { Footer } from "../components/home/footer";
+
+import { RecomendadoProps } from "@/components/recomendados";
+
+
+import produto1 from "../../../public/areia-gato.png";
+import dogAmarelo from "../../../public/hero-dog.webp";
+/* import { Racao } from "./components/racao"; */
 
 
 export default function Cachorros() {
@@ -92,6 +96,7 @@ export default function Cachorros() {
                                 </article>
                             ))}
                         </div>
+                        {/* <Racao /> */}
                     </Container>
                 </section>
             </main>

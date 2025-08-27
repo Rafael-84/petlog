@@ -18,6 +18,8 @@ model Produtos {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   nome           String
   preco          String
+  categoria      String
+  subcategoria   String
   desconto       String?
   preco_desconto String?
   image_url      String
