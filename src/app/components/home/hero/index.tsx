@@ -9,8 +9,8 @@ export function HeroHome() {
         <>
             <section className="bg-[url(../../public/bg-hero.png)] bg-[#ff1d09]/85 bg-blend-overlay relative">
 
-                <div>
-                    <Image className="object-cover opacity-60 lg:hidden" src={dogHero} alt="Imagem do cachorrinho" fill priority sizes="100vw" quality={100} />
+                <div className="absolute inset-0 h-full w-full">
+                    <Image className="object-cover opacity-60 lg:hidden" src={dogHero} alt="Imagem do cachorrinho" fill priority quality={100} />
 
                     <div className="absolute inset-0 bg-black opacity-40 lg:hidden"></div>
                 </div>

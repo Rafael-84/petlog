@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Link from 'next/link';
+import MyCatNotFound from '@/components/animations/notFound';
 
 
 
@@ -14,12 +14,8 @@ export default function NotFound() {
 
                 <div className='mx-auto flex flex-col items-center justify-center relative'>
                     <div className='mx-auto '>
-                        <DotLottieReact
-                            src="https://lottie.host/4069e97f-5cc1-4a2c-b9b0-38ab3b08850c/ymutWypEiU.lottie"
-                            loop
-                            autoplay
-                            style={{ width: "720px", height: "auto" }}
-                        />
+                        <MyCatNotFound />
+
 
                         <div className='absolute pt-2 w-full top-3/4 mx-auto ' >
                             <div className='w-fit mx-auto flex flex-col  items-center justify-center space-y-4'>

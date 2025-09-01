@@ -21,6 +21,7 @@ export async function POST(request: Request) {
                 email: email ? email : "",
                 telefone,
                 cpf: cpf ? cpf : "",
+                pets,
                 endereco,
                 image_url: imageUrl ? imageUrl : "",
             }

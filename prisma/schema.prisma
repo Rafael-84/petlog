@@ -20,72 +20,16 @@ model Produtos {
   preco          String
   categoria      String
   subcategoria   String
+  fornecedor     String
+  custo          String
   desconto       String?
   preco_desconto String?
-  image_url      String
-  quantidade     Int
-  validade       Validades @relation(fields: [nome], references: [id])
+  uuid           String
+  image_url      String[]
+  quantidade     String
+  validade       String
   created_at     DateTime? @default(now())
   updated_at     DateTime? @default(now())
-
-  itensId String?  @db.ObjectId
-  itens   Pedidos? @relation(fields: [itensId], references: [id])
-}
-
-model Cliente {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  id_user   String  @db.ObjectId
-  nome      String
-  email     String?
-  telefone  String
-  cpf       String?
-  endereco  String?
-  pets      Pet[]
-  image_url String?
-
-  pedido Pedidos[]
-}
-
-model Pet {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  nome      String
-  idade     String?
-  raca      String
-  especie   String
-  image_url String?
-
-  clienteId String?  @db.ObjectId
-  cliente   Cliente? @relation(fields: [clienteId], references: [id])
-}
-
-model Pedidos {
-  id              String     @id @default(auto()) @map("_id") @db.ObjectId
-  data_retirar    String
-  valor_do_pedido String
-  itens           Produtos[]
-
-  clienteId String  @db.ObjectId
-  cliente   Cliente @relation(fields: [clienteId], references: [id])
-}
-
-model Validades {
-  id             String      @id @default(auto()) @map("_id") @db.ObjectId
-  item           Produtos[]
-  quantidade     String
-  vencimento     String
-  tratamento     String
-  funcionario    Funcionario @relation(fields: [id_funcionario], references: [id])
-  id_funcionario String      @db.ObjectId
-}
-
-model Funcionario {
-  id                 String      @id @default(auto()) @map("_id") @db.ObjectId
-  nome               String
-  cargo              String?
-  nivel_acesso       String
-  validades_produtos Validades[]
-
-  user User[]
 }
 
 model User {
@@ -99,7 +43,6 @@ model User {
   // Optional for WebAuthn support
   Authenticator Authenticator[]
   userId        String?         @db.ObjectId
-  funcionario   Funcionario?    @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
