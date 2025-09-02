@@ -14,6 +14,7 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage
 import { storage } from "@/services/firebase/firebaseConnection";
 import Image from "next/image";
 import { TrashIcon } from "@phosphor-icons/react";
+import toast from "react-hot-toast";
 
 
 const scheema = zod.object({
@@ -77,7 +78,9 @@ export default function New() {
                 await uploadImage(image);
 
             } else {
-                alert("Formato inválido. Aceitamos apenas PNG, JPG e JPEG.");
+                toast.error("Formato inválido. Aceitamos apenas PNG, JPG e JPEG.", {
+
+                });
                 e.currentTarget.value = '';
                 return;
             }
@@ -94,7 +97,7 @@ export default function New() {
         }
 
         if (images?.length === 0) {
-            alert("Envie pelo menos uma imagem!")
+            toast.error("Envie pelo menos uma imagem!")
         }
 
         const imagens = images.map(image => {
@@ -120,7 +123,7 @@ export default function New() {
                 image_url: imagens,
             })
 
-            alert("Produto cadastrado com sucesso!")
+            toast.success("Produto cadastrado com sucesso!")
             if (inputFile.current) {
                 inputFile.current.value = "";
             }
@@ -128,7 +131,7 @@ export default function New() {
             setSubcategoria("");
             reset({ nome: "", custo: "", fornecedor: "", quantidade: "", validade: "", venda: "" });
         } catch (error) {
-            alert("Erro ao cadastrar o produto")
+            toast.error("Erro ao cadastrar o produto")
             return;
         }
     }
@@ -152,12 +155,12 @@ export default function New() {
 
                     setImages(images => [...images, imageItem])
 
-                    alert("Imagens cadastradas com sucesso!")
+                    toast.success("Imagens cadastradas com sucesso!")
 
                 })
             })
             .catch((err) => {
-                alert("Erro ao cadastrar a imagem")
+                toast.error("Erro ao cadastrar a imagem")
                 console.log("erro: " + err)
             })
     }
@@ -176,9 +179,9 @@ export default function New() {
                 inputFile.current.value = "";
             }
 
-            alert("Imagem excluida com sucesso!")
+            toast.success("Imagem excluida com sucesso!")
         } catch (error) {
-            alert("Erro ao excluir a imagem!")
+            toast.error("Erro ao excluir a imagem!")
             console.log(error)
         }
 
@@ -250,9 +253,9 @@ export default function New() {
                                     </div>
                                 </div>
                                 <div className="flex items-center flex-wrap ">
-                                    <div className={`flex items-center justify-center bg-slate-50 w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-300 hover:bg-slate-200 relative`} >
+                                    <div className={`flex items-center justify-center bg-slate-50 w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-300 hover:bg-slate-200 duration-300 relative`} >
                                         {images.length > 0 && (
-                                            <img src={`${images[index]?.url}`} alt="Imagem input" className="absolute object-cover w-full h-full opacity-15 bg-blend-overlay bg-slate-500 " />
+                                            <Image src={`${images[index]?.url}`} alt="Imagem input" className="absolute object-cover w-full h-full opacity-15 bg-blend-overlay bg-slate-500 " fill quality={100} priority />
                                         )}
                                         <input type="file" accept="image/*" onChange={handleFile} ref={inputFile} className="w-full mx-1 z-10 cursor-pointer" />
                                     </div>
@@ -262,7 +265,7 @@ export default function New() {
                                         <div key={image.uuid} className="  w-48 h-48 object-cover relative mt-8 ml-4 border-2 rounded-md border-slate-300">
                                             <button onClick={() => handleDeleteImage(image)} className="cursor-pointer bg-[#FB2C36] absolute top-2 right-2 w-auto h-auto p-0.5 rounded-md"><TrashIcon color="#fff" size={22} /></button>
                                             <div>
-                                                <Image src={image.url} alt="Imagem produto" className="w-20 rounded-md -z-10" fill />
+                                                <Image src={image.url} alt="Imagem produto" className="w-20 rounded-md -z-10" fill quality={100} priority />
                                             </div>
                                         </div>
                                     ))}
