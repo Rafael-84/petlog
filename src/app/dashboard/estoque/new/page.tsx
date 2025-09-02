@@ -1,24 +1,18 @@
 "use client"
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState, useRef } from "react";
 import { Container } from "@/components/container";
 import { Input } from "@/components/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+
 import { useForm } from "react-hook-form";
-import zod, { object } from "zod";
+import zod from "zod";
 import { v4 as uuidV4 } from "uuid";
 import { api } from "@/lib/api";
 
-import { ref, uploadBytes, getDownloadURL, StorageReference } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/services/firebase/firebaseConnection";
-import { create } from "domain";
 
-
-
-const tiposAceitos = [
-    "image/png",
-    "image/jpeg"
-]
 
 const scheema = zod.object({
     nome: zod.string().min(3, "Digite um nome válido"),
@@ -27,7 +21,7 @@ const scheema = zod.object({
     venda: zod.string().min(1, "Digite um valor válido"),
     quantidade: zod.string().min(1, "Digite uma quantidade válida"),
     validade: zod.string(),
-    /* images: zod.any().refine((files) => tiposAceitos.includes(files?.[0].type), { error: "Tipo inválido, são permitidos apenas jpeg e png" }) */
+
 })
 
 type FormData = zod.infer<typeof scheema>
@@ -47,40 +41,41 @@ interface ProdutoInfoProps {
     venda: string;
     quantidade: string;
     validade: string;
-
-
-
 }
 
 export default function New() {
 
     const [images, setImages] = useState<ImageProps[]>([]);
-    //const [produtosRegister, setProdutosRegister] = useState<ProdutoInfoProps>();
-    const [categoria, setCategoria] = useState<string>();
-    const uuidProduto = uuidV4();
-    const [subCategoria, setSubCategoria] = useState<string>();
+    const [uuidProduto, setUuidProduto] = useState<string>();
+    const [categoria, setCategoria] = useState<string>("");
+    const [subcategoria, setSubcategoria] = useState<string>("");
+    const inputFile = useRef<HTMLInputElement>(null)
 
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
         resolver: zodResolver(scheema)
     })
 
+    useEffect(() => {
+        const uuidProduto = uuidV4();
+        setUuidProduto(uuidProduto)
+
+    }, []);
 
 
     async function handleFile(e: ChangeEvent<HTMLInputElement>) {
-
-
 
         if (e.target.files && e.target.files[0]) {
             const image = e.target.files[0];
 
             console.log(image)
 
-            if (image.type === "image/jpg" || image.type === "image/png") {
+            if (image.type === "image/jpg" || image.type === "image/png" || image.type === "image/jpeg") {
                 await uploadImage(image);
 
             } else {
                 alert("Formato inválido. Aceitamos apenas PNG, JPG e JPEG.");
+                e.currentTarget.value = '';
                 return;
             }
 
@@ -92,56 +87,59 @@ export default function New() {
 
         const produtoInfo: ProdutoInfoProps = {
             ...data,
-            uuid: uuidProduto,
+            uuid: uuidProduto as string,
         }
+
+        if (images?.length === 0) {
+            alert("Envie pelo menos uma imagem!")
+        }
+
         const imagens = images.map(image => {
             return {
-                name: data.nome,
-                uuid: image.uuid,
-                url: image.url
-            }
-        })
-
-        console.log(imagens[0].uuid)
+                url: image.url,
+                name: image.name,
+                uuid: image.uuid
+            };
+        });
 
         try {
-
             await api.post("/api/products", {
-                data: {
-                    nome: data.nome,
-                    categoria: categoria,
-                    subcategoria: subCategoria,
-                    uuid: produtoInfo.uuid,
-                    fornecedor: data.fornecedor,
-                    custo: data.custo,
-                    preco: data.venda,
-                    quantidade: data.quantidade,
-                    validade: data.validade,
-                    image_url: imagens,
-                    preco_desconto: "",
-                    desconto: "",
-                }
+
+                nome: data.nome,
+                categoria: categoria,
+                subcategoria: subcategoria,
+                uuid: produtoInfo.uuid,
+                fornecedor: data.fornecedor,
+                custo: data.custo,
+                preco: data.venda,
+                quantidade: data.quantidade,
+                validade: data.validade,
+                image_url: imagens,
             })
-            alert("Item cadstrado com sucesso")
 
+            alert("Produto cadastrado com sucesso!")
+            if (inputFile.current) {
+                inputFile.current.value = "";
+            }
+            setCategoria("");
+            setSubcategoria("");
+            reset({ nome: "", custo: "", fornecedor: "", quantidade: "", validade: "", venda: "" });
         } catch (error) {
-            console.log("error: ", error)
+            alert("Erro ao cadastrar o produto")
+            return;
         }
-
     }
-
-
 
     async function uploadImage(image: File) {
         const uuidImg = uuidV4();
-        const imgRef = ref(storage, `/produtos/${categoria}/${subCategoria}/${uuidProduto}/${uuidImg}`)
+        const imgRef = ref(storage, `/produtos/${categoria}/${subcategoria}/${uuidProduto}/${uuidImg}`)
 
         await uploadBytes(imgRef, image)
             .then(snapshot => {
                 getDownloadURL(snapshot.ref).then(downloadUrl => {
                     const imageItem = {
-                        name: uuidImg,
-                        uuid: uuidProduto,
+                        name: uuidProduto as string,
+                        uuid: uuidImg,
                         urlPreview: URL.createObjectURL(image),
                         url: downloadUrl
                     }
@@ -156,41 +154,7 @@ export default function New() {
                 alert("Erro ao cadastrar a imagem")
                 console.log("erro: " + err)
             })
-
     }
-
-    // produtos/${categoria}/${subcategoria}/uuidProduto/imagem.png
-    /*  async function uploadImage(image: File) {
- 
-         const uuidImg = uuidV4()
-         const produtoUid = produtosUuid?.uuid
-         
-         const uploadRef = ref(storage, `produtos/${produtosUuid?.categoria}/${produtosUuid?.subCategoria}/${produtoUid}`)
- 
-         await uploadBytes(uploadRef, image)
-             .then((snapshot) => {
-                 getDownloadURL(snapshot.ref).then((downloadUrl) => {
-                     const imageItem = {
-                         name: uuidImg,
-                         uuid: produtoUid as string,
-                         urlPreview: URL.createObjectURL(image),
-                         url: downloadUrl
-                     }
- 
-                     setImages((images) => [...images, imageItem]);
-                     images.map(item => {
-                         console.log(item)
-                     })
-                     console.log("Imagem enviada com sucesso!")
-                 })
-             }).catch((error) => {
-                 console.log("Erro ao cadastrar a imagem. " + error)
-             })
-     } */
-
-
-
-
 
     return (
         <section>
@@ -199,27 +163,28 @@ export default function New() {
                     <h1 className="text-gray-800 text-2xl font-bold pt-4">Cadastrar Produto</h1>
                     <Link className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 duration-300 font-medium" href="/dashboard/estoque">Voltar</Link>
                 </div>
-                <div className="flex items-center gap-4 mt-8">
-                    <div className="w-fit">
-                        <label className="text-gray-800 text-lg font-medium mr-1">Categoria:</label>
-                        <input className="border-[2px] border-slate-300 rounded-md" placeholder="Ex: Cachorro" type="text" value={categoria} onChange={e => setCategoria(e.target.value)} required />
+                <div className="flex items-center justify-between gap-4 mt-8">
+                    <div className="flex items-center gap-4 ">
+                        <div className=" flex">
+                            <label className="text-gray-800 text-lg font-medium mr-1">Categoria:</label>
+                            <input className="w-fit border-2 border-slate-300 rounded-sm px-2" placeholder="Ex: Cachorro" type="text" value={categoria} onChange={e => setCategoria(e.target.value)} required />
+                        </div>
+                        <div className="w-fit flex">
+                            <label className="text-gray-800 text-lg font-medium mr-1">Sub-Categoria:</label>
+                            <input className="w-fit border-2 border-slate-300 rounded-sm px-2" placeholder="Ex: Racao" type="text" value={subcategoria} onChange={e => setSubcategoria(e.target.value)} required />
+                        </div>
                     </div>
-                    <div className="w-fit">
-                        <label className="text-gray-800 text-lg font-medium mr-1">Sub-Categoria:</label>
-                        <input className="border-[2px] border-slate-300 rounded-md" placeholder="Ex: Racao" type="text" value={subCategoria} onChange={e => setSubCategoria(e.target.value)} required />
+
+                    <div>
+                        {images.length > 0 && (
+                            <button className="mt-4 bg-green-500 text-white px-6 py-1 rounded-md hover:bg-green-600 duration-300 cursor-pointer font-bold" type="submit">Cadastrar</button>
+                        )}
                     </div>
                 </div>
-                {categoria && subCategoria && (
+                {categoria && subcategoria && (
                     <>
-                        <div className="flex items-center justify-center bg-slate-200 w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-400">
-                            <input type="file" accept="image/*" onChange={handleFile} className="w-full mx-1" />
-                        </div>
-
                         <form onSubmit={handleSubmit(handleSaveProduct)} className="w-full flex flex-col items-end " >
                             <div className="w-full mt-8 flex flex-col">
-
-
-
 
                                 <div className="flex items-center  w-full gap-8 ">
                                     <div className="w-full  " >
@@ -255,9 +220,12 @@ export default function New() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="flex items-center justify-center bg-slate-200 w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-400">
+                                    <input type="file" accept="image/*" onChange={handleFile} ref={inputFile} className="w-full mx-1" />
+                                </div>
 
                             </div>
-                            <button className="mt-4 bg-green-500 text-white px-6 py-1 rounded-md hover:bg-green-600 duration-300 cursor-pointer font-bold" type="submit">Cadastrar</button>
+
                         </form>
                     </>
 

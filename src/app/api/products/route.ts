@@ -26,23 +26,24 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
 
 
-    const { nome, categoria, subCategoria, uuid, fornecedor, custo, venda, quantidade, validade, imagens, precoDesconto, desconto } = await request.json();
+    const { nome, categoria, subcategoria, uuid, fornecedor, custo, preco, quantidade, validade, image_url, precoDesconto, desconto } = await request.json();
 
     try {
         await prismaClient.produtos.create({
             data: {
+                nome,
                 categoria,
-                subcategoria: subCategoria,
+                subcategoria,
                 uuid,
                 fornecedor,
                 custo,
-                preco: venda,
+                preco: preco,
                 quantidade,
                 validade,
-                image_url: imagens,
-                preco_desconto: precoDesconto ? precoDesconto : "",
+                image_url,
                 desconto: desconto ? desconto : "",
-                nome: nome,
+                preco_desconto: precoDesconto ? precoDesconto : ""
+
             }
         })
 
