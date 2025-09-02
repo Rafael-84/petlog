@@ -10,8 +10,10 @@ import zod from "zod";
 import { v4 as uuidV4 } from "uuid";
 import { api } from "@/lib/api";
 
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { storage } from "@/services/firebase/firebaseConnection";
+import Image from "next/image";
+import { TrashIcon } from "@phosphor-icons/react";
 
 
 const scheema = zod.object({
@@ -50,6 +52,7 @@ export default function New() {
     const [categoria, setCategoria] = useState<string>("");
     const [subcategoria, setSubcategoria] = useState<string>("");
     const inputFile = useRef<HTMLInputElement>(null)
+    const index = images.findLastIndex(index => index.url)
 
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
@@ -134,6 +137,8 @@ export default function New() {
         const uuidImg = uuidV4();
         const imgRef = ref(storage, `/produtos/${categoria}/${subcategoria}/${uuidProduto}/${uuidImg}`)
 
+
+
         await uploadBytes(imgRef, image)
             .then(snapshot => {
                 getDownloadURL(snapshot.ref).then(downloadUrl => {
@@ -146,6 +151,7 @@ export default function New() {
                     console.log(imageItem)
 
                     setImages(images => [...images, imageItem])
+
                     alert("Imagens cadastradas com sucesso!")
 
                 })
@@ -154,6 +160,29 @@ export default function New() {
                 alert("Erro ao cadastrar a imagem")
                 console.log("erro: " + err)
             })
+    }
+
+    async function handleDeleteImage(uuid: ImageProps) {
+
+        const deletePath = `/produtos/${categoria}/${subcategoria}/${uuidProduto}/${uuid.uuid}`
+        const deleteRef = ref(storage, deletePath);
+
+        try {
+            await deleteObject(deleteRef);
+            setImages(images.filter(image => image.url !== uuid.url))
+
+
+            if (inputFile.current) {
+                inputFile.current.value = "";
+            }
+
+            alert("Imagem excluida com sucesso!")
+        } catch (error) {
+            alert("Erro ao excluir a imagem!")
+            console.log(error)
+        }
+
+
     }
 
     return (
@@ -220,10 +249,26 @@ export default function New() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex items-center justify-center bg-slate-200 w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-400">
-                                    <input type="file" accept="image/*" onChange={handleFile} ref={inputFile} className="w-full mx-1" />
-                                </div>
+                                <div className="flex items-center flex-wrap ">
+                                    <div className={`flex items-center justify-center bg-slate-50 w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-300 hover:bg-slate-200 relative`} >
+                                        {images.length > 0 && (
+                                            <img src={`${images[index]?.url}`} alt="Imagem input" className="absolute object-cover w-full h-full opacity-15 bg-blend-overlay bg-slate-500 " />
+                                        )}
+                                        <input type="file" accept="image/*" onChange={handleFile} ref={inputFile} className="w-full mx-1 z-10 cursor-pointer" />
+                                    </div>
 
+
+                                    {images.map(image => (
+                                        <div key={image.uuid} className="  w-48 h-48 object-cover relative mt-8 ml-4 border-2 rounded-md border-slate-300">
+                                            <button onClick={() => handleDeleteImage(image)} className="cursor-pointer bg-[#FB2C36] absolute top-2 right-2 w-auto h-auto p-0.5 rounded-md"><TrashIcon color="#fff" size={22} /></button>
+                                            <div>
+                                                <Image src={image.url} alt="Imagem produto" className="w-20 rounded-md -z-10" fill />
+                                            </div>
+                                        </div>
+                                    ))}
+
+
+                                </div>
                             </div>
 
                         </form>
