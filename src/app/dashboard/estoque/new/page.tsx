@@ -195,28 +195,28 @@ export default function New() {
                     <h1 className="text-gray-800 text-2xl font-bold pt-4">Cadastrar Produto</h1>
                     <Link className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 duration-300 font-medium" href="/dashboard/estoque">Voltar</Link>
                 </div>
-                <div className="flex items-center justify-between gap-4 mt-8">
-                    <div className="flex items-center gap-4 ">
-                        <div className=" flex">
+                <div className="flex items-center justify-between lg:gap-4 mt-8 border-2  border-slate-200 rounded-md px-1 py-4">
+                    <div className="flex w-full lg:w-fit items-center gap-4  ">
+                        <div className="flex-1 w-full lg:flex">
                             <label className="text-gray-800 text-lg font-medium mr-1">Categoria:</label>
-                            <input className="w-fit border-2 border-slate-300 rounded-sm px-2" placeholder="Ex: Cachorro" type="text" value={categoria} onChange={e => setCategoria(e.target.value)} required />
+                            <input className="w-full lg:w-fit border-2 bg-white border-slate-300 rounded-sm px-2" placeholder="Ex: Cachorro" type="text" value={categoria} onChange={e => setCategoria(e.target.value)} required />
                         </div>
-                        <div className="w-fit flex">
-                            <label className="text-gray-800 text-lg font-medium mr-1">Sub-Categoria:</label>
-                            <input className="w-fit border-2 border-slate-300 rounded-sm px-2" placeholder="Ex: Racao" type="text" value={subcategoria} onChange={e => setSubcategoria(e.target.value)} required />
+                        <div className="flex-1 w-full lg:flex lg:items-center">
+                            <label className="text-gray-800 text-lg font-medium mr-1 text-nowrap ">Sub-Categoria:</label>
+                            <input className="w-full lg:w-fit border-2 bg-white border-slate-300 rounded-sm px-2" placeholder="Ex: Racao" type="text" value={subcategoria} onChange={e => setSubcategoria(e.target.value)} required />
                         </div>
                     </div>
 
-                    <div>
+                    <div className="hidden lg:flex lg:items-center lg:justify-center  ">
                         {images.length > 0 && (
-                            <button className="mt-4 bg-green-500 text-white px-6 py-1 rounded-md hover:bg-green-600 duration-300 cursor-pointer font-bold" type="submit">Cadastrar</button>
+                            <button className=" bg-green-500 text-white px-6 py-1 rounded-md hover:bg-green-600 duration-300 cursor-pointer font-bold" onClick={handleSubmit(handleSaveProduct)}>Cadastrar</button>
                         )}
                     </div>
                 </div>
                 {categoria && subcategoria && (
                     <>
                         <form onSubmit={handleSubmit(handleSaveProduct)} className="w-full flex flex-col items-end " >
-                            <div className="w-full mt-8 flex flex-col">
+                            <div className="w-full mt-8 flex flex-col border-2 border-slate-200 rounded-md px-1 py-4">
 
                                 <div className="flex items-center  w-full gap-8 ">
                                     <div className="w-full  " >
@@ -233,7 +233,7 @@ export default function New() {
                                     </div>
                                 </div>
                                 <div>
-                                    <div className="flex flex-row w-full gap-4 mt-4">
+                                    <div className="flex flex-col lg:flex-row w-full gap-4 mt-4 ">
                                         <div className="w-full">
                                             <label className="text-gray-800 text-lg font-medium">Custo</label>
                                             <Input placeholder="Ex: 80.00" type="text" register={register} name="custo" errors={errors?.custo?.message} />
@@ -252,12 +252,19 @@ export default function New() {
                                         </div>
                                     </div>
                                 </div>
+
+                                <div className="mt-4 lg:hidden">
+                                    {images.length > 0 && (
+                                        <button className=" bg-green-500 text-white px-6 py-1 rounded-md hover:bg-green-600 duration-300 cursor-pointer font-bold w-full" type="submit">Cadastrar</button>
+                                    )}
+                                </div>
+
                                 <div className="flex items-center flex-wrap ">
-                                    <div className={`flex items-center justify-center bg-slate-50 w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-300 hover:bg-slate-200 duration-300 relative`} >
+                                    <div className={`flex items-center justify-center bg-white w-2xs h-48 mt-8 rounded-md border-dashed border-[2px] border-slate-300 hover:bg-slate-50 duration-300 relative`} >
                                         {images.length > 0 && (
                                             <Image src={`${images[index]?.url}`} alt="Imagem input" className="absolute object-cover w-full h-full opacity-15 bg-blend-overlay bg-slate-500 " fill quality={100} priority />
                                         )}
-                                        <input type="file" accept="image/*" onChange={handleFile} ref={inputFile} className="w-full mx-1 z-10 cursor-pointer" />
+                                        <input type="file" accept="image/*" onChange={handleFile} ref={inputFile} className="w-full mx-1 z-10  cursor-pointer" />
                                     </div>
 
 

@@ -5,7 +5,6 @@ export function ItemProduto() {
         <tr className="border-b-2 border-b-slate-200 last:border-b-0 h-16 bg-white hover:bg-slate-200 hover:duration-300" >
             <td className="text-center" > Imagem Aqui</td>
             <td className="text-sm ">Ração Golden Special para Cães Adultos Sabor Frango e Carne</td>
-            <td className="text-center">SKU-098</td>
             <td className="text-center">Ração</td>
             <td className="text-center">Premier</td>
             <td className="text-center">R$80,00</td>

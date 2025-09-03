@@ -35,7 +35,6 @@ export default function Estoque() {
                             <tr className=" border-[1px] border-rose-800 font-medium" >
                                 <td className="pl-1 text-center ">Foto</td>
                                 <td className="py-2 ">Produto</td>
-                                <td className="py-2 text-center ">Código</td>
                                 <td className="py-2 text-center ">Categoria</td>
                                 <td className="py-2 text-center ">Fornecedor</td>
                                 <td className="py-2 text-center ">Custo</td>
