@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCMls4cVC6AM3j8IcqV_K2MvjBLU_yQkOU",
+    apiKey: process.env.FIREBASE as string,
     authDomain: "petlog-f1a51.firebaseapp.com",
     projectId: "petlog-f1a51",
     storageBucket: "petlog-f1a51.firebasestorage.app",
