@@ -24,13 +24,13 @@ export function Header() {
 
                 <Link href="/"><h2 className="text-[#6C0020] font-bold text-xl">PetLog</h2></Link>
 
-                <nav className="flex items-center gap-4">
+                {/* <nav className="flex items-center gap-4">
                     <Link href="/cachorros" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300 ${ativo === "/cachorros" ? "text-[#C7033D]" : ""}`} onClick={() => setAtivo("/cachorros")}><span className="sr-only">Pagina cachorros</span>Cachorros</Link>
                     <Link href="/gatos" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300 ${ativo === "/gatos" ? "text-[#C7033D]" : ""}`} onClick={() => setAtivo("/gatos")}><span className="sr-only">Pagina gatos</span>Gatos</Link>
                     <Link href="/aves" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300 ${ativo === "/aves" ? "text-[#C7033D]" : ""}`} onClick={() => setAtivo("/aves")}><span className="sr-only">Pagina aves</span>Aves</Link>
-                </nav>
+                </nav> */}
 
-                <nav className="flex items-center gap-4">
+                {/* <nav className="flex items-center gap-4">
                     {status === "authenticated" && (
                         <Link href="/favoritos">< HeartIcon size={24} color="#6C0020" /></Link>
                     )}
@@ -38,7 +38,7 @@ export function Header() {
                     <Link href="https://wa.me/551140028922?text=Olá gostaria de mais informações" target="_blank"><PhoneIcon size={24} color="#6C0020" /></Link>
                     <CartUser />
                     <UserLogin />
-                </nav>
+                </nav> */}
 
             </div>
         </header>

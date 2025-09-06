@@ -1,11 +1,14 @@
 import { HeaderAdmin } from "./components/headerAdmin";
+import { EditEstoqueProvider } from "@/providers/edit_estoque";
 
 
 export default function LayoutDashboard({ children }: { children: React.ReactNode }) {
     return (
         <section>
-            <HeaderAdmin />
-            {children}
+            <EditEstoqueProvider>
+                <HeaderAdmin />
+                {children}
+            </EditEstoqueProvider>
         </section>
     )
 

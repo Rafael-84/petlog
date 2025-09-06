@@ -36,7 +36,7 @@ interface ImageProps {
     uuid: string;
 }
 
-interface ProdutoInfoProps {
+interface CadastroProdutoProps {
     nome: string;
     uuid: string;
     fornecedor: string;
@@ -91,7 +91,7 @@ export default function New() {
     async function handleSaveProduct(data: FormData) {
 
 
-        const produtoInfo: ProdutoInfoProps = {
+        const produtoInfo: CadastroProdutoProps = {
             ...data,
             uuid: uuidProduto as string,
         }
@@ -109,7 +109,7 @@ export default function New() {
         });
 
         try {
-            await api.post("/api/products", {
+            await api.post("/api/estoque", {
 
                 nome: data.nome,
                 categoria: categoria,
@@ -191,18 +191,18 @@ export default function New() {
     return (
         <section>
             <Container>
-                <div className="flex items-center justify-between">
-                    <h1 className="text-gray-800 text-2xl font-bold pt-4">Cadastrar Produto</h1>
-                    <Link className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 duration-300 font-medium" href="/dashboard/estoque">Voltar</Link>
+                <div className="flex items-center justify-between pt-4">
+                    <h1 className="text-gray-800 text-[22px] lg:text-2xl font-bold ">Cadastrar Produto</h1>
+                    <Link className="bg-red-500 text-white text-sm px-4 py-1 rounded-md hover:bg-red-600 duration-300 font-medium" href="/dashboard/estoque">Voltar</Link>
                 </div>
                 <div className="flex items-center justify-between lg:gap-4 mt-8 border-2  border-slate-200 rounded-md px-1 py-4">
                     <div className="flex w-full lg:w-fit items-center gap-4  ">
                         <div className="flex-1 w-full lg:flex">
-                            <label className="text-gray-800 text-lg font-medium mr-1">Categoria:</label>
+                            <label className="text-gray-800 lg:text-lg font-medium mr-1">Categoria:</label>
                             <input className="w-full lg:w-fit border-2 bg-white border-slate-300 rounded-sm px-2" placeholder="Ex: Cachorro" type="text" value={categoria} onChange={e => setCategoria(e.target.value)} required />
                         </div>
                         <div className="flex-1 w-full lg:flex lg:items-center">
-                            <label className="text-gray-800 text-lg font-medium mr-1 text-nowrap ">Sub-Categoria:</label>
+                            <label className="text-gray-800 lg:text-lg font-medium mr-1 text-nowrap ">Sub-Categoria:</label>
                             <input className="w-full lg:w-fit border-2 bg-white border-slate-300 rounded-sm px-2" placeholder="Ex: Racao" type="text" value={subcategoria} onChange={e => setSubcategoria(e.target.value)} required />
                         </div>
                     </div>
@@ -220,14 +220,14 @@ export default function New() {
 
                                 <div className="flex items-center  w-full gap-8 ">
                                     <div className="w-full  " >
-                                        <label className="text-gray-800 text-lg font-medium">Produto</label>
+                                        <label className="text-gray-800 lg:text-lg font-medium">Produto</label>
                                         <Input placeholder="Ex: Golden Special para Cães Adultos Sabor Frango e Carne 10kg" type="text" register={register} name="nome" errors={errors?.nome?.message} />
                                     </div>
 
                                     <div className="flex w-full gap-4 items-center " >
 
                                         <div className="w-full">
-                                            <label className="text-gray-800 text-lg font-medium">Fornecedor</label>
+                                            <label className="text-gray-800 lg:text-lg font-medium">Fornecedor</label>
                                             <Input placeholder="Ex: Premier" type="text" register={register} name="fornecedor" errors={errors?.fornecedor?.message} />
                                         </div>
                                     </div>
@@ -235,19 +235,19 @@ export default function New() {
                                 <div>
                                     <div className="flex flex-col lg:flex-row w-full gap-4 mt-4 ">
                                         <div className="w-full">
-                                            <label className="text-gray-800 text-lg font-medium">Custo</label>
+                                            <label className="text-gray-800 lg:text-lg font-medium">Custo</label>
                                             <Input placeholder="Ex: 80.00" type="text" register={register} name="custo" errors={errors?.custo?.message} />
                                         </div>
                                         <div className="w-full">
-                                            <label className="text-gray-800 text-lg font-medium">Valor de venda</label>
+                                            <label className="text-gray-800 lg:text-lg font-medium">Valor de venda</label>
                                             <Input placeholder="Ex: 90.00" type="text" register={register} name="venda" errors={errors?.venda?.message} />
                                         </div>
                                         <div className="w-full">
-                                            <label className="text-gray-800 text-lg font-medium">Quantidade</label>
+                                            <label className="text-gray-800 lg:text-lg font-medium">Quantidade</label>
                                             <Input placeholder="Ex: 30" type="text" register={register} name="quantidade" errors={errors?.quantidade?.message} />
                                         </div>
                                         <div className="w-full">
-                                            <label className="text-gray-800 text-lg font-medium">Validade</label>
+                                            <label className="text-gray-800 lg:text-lg font-medium">Validade</label>
                                             <Input placeholder="Ex: 22/10/2025" type="date" register={register} name="validade" errors={errors?.validade?.message} />
                                         </div>
                                     </div>
