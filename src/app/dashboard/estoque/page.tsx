@@ -3,6 +3,7 @@ import { Container } from "@/components/container";
 import Link from "next/link";
 import { ItemProduto } from "../components/ItemProduto";
 import PrismaClient from "@/lib/prisma";
+import { EditarProduto } from "../components/editarProduto";
 
 
 export default async function Estoque() {
@@ -42,6 +43,7 @@ export default async function Estoque() {
                 </section>
                 <section>
 
+                    <EditarProduto />
 
                     <table className="w-full my-2 lg:my-8  ">
                         <thead>

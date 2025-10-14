@@ -1,5 +1,5 @@
 "use client"
-import { HeaderCategoria } from "../../components/headerCategoria"
+import { HeaderCategoria } from "../cachorros/components/_headerCategoriaCachorro"
 import { Recomendado } from "@/components/recomendados";
 import Image from "next/image";
 import gato from "../../../public/gato-bg.png";

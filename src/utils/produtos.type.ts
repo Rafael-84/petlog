@@ -1,17 +1,17 @@
-export interface ProdutoProps {
+export interface ProdutosProps {
     produto: {
         id: string;
         nome: string;
         categoria: string;
         subcategoria: string;
-        preco: string;
+        preco: number;
         fornecedor: string;
-        custo: string;
-        desconto: string | null;
-        preco_desconto: string | null;
+        custo: number;
+        desconto: number | null;
+        preco_desconto: number | null;
         uuid: string;
-        image_url: { url: string; name: string; uuid: string; }[] | null;
-        quantidade: string;
+        image_url: ImageProps[] | null;
+        quantidade: number;
         validade: string;
         created_at: Date | null;
         updated_at: Date | null;
@@ -19,19 +19,27 @@ export interface ProdutoProps {
 
 }
 
-export interface Produto {
+interface ImageProps {
+    name: string;
+    url: string;
+    urlPreview: string;
+    uuid: string;
+}
+
+
+export interface ProdutoProp {
     id: string;
     nome: string;
     categoria: string;
     subcategoria: string;
-    preco: string;
+    preco: number;
     fornecedor: string;
-    custo: string;
-    desconto: string | null;
-    preco_desconto: string | null;
+    custo: number;
+    desconto: number | null;
+    preco_desconto: number | null;
     uuid: string;
-    image_url: { url: string; name: string; uuid: string; }[] | null;
-    quantidade: string;
+    image_url: ImageProps[] | null;
+    quantidade: number;
     validade: string;
     created_at: Date | null;
     updated_at: Date | null;

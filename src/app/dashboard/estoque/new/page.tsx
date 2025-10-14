@@ -17,6 +17,7 @@ import { TrashIcon } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
 
 
+
 const scheema = zod.object({
     nome: zod.string().min(3, "Digite um nome válido"),
     fornecedor: zod.string().min(3, "Digite um fornecedor válido"),
@@ -112,13 +113,13 @@ export default function New() {
             await api.post("/api/estoque", {
 
                 nome: data.nome,
-                categoria: categoria,
-                subcategoria: subcategoria,
+                categoria: categoria.toLocaleLowerCase(),
+                subcategoria: subcategoria.toLocaleLowerCase(),
                 uuid: produtoInfo.uuid,
                 fornecedor: data.fornecedor,
-                custo: data.custo,
-                preco: data.venda,
-                quantidade: data.quantidade,
+                custo: Number(data.custo),
+                preco: Number(data.venda),
+                quantidade: Number(data.quantidade),
                 validade: data.validade,
                 image_url: imagens,
             })
@@ -126,6 +127,7 @@ export default function New() {
             toast.success("Produto cadastrado com sucesso!")
             if (inputFile.current) {
                 inputFile.current.value = "";
+                setImages([]);
             }
             setCategoria("");
             setSubcategoria("");

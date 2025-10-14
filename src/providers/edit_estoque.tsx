@@ -4,7 +4,7 @@ import { createContext, ReactNode, useState } from 'react';
 
 interface EditarProdutoProps {
     produto: Produto | null
-    setProduto: (item: Produto) => void
+    setProduto: (item: Produto | null) => void
 
 
 }

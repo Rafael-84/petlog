@@ -4,15 +4,14 @@ import prismaClient from "@/lib/prisma";
 export async function GET(request: Request) {
 
     const { searchParams } = new URL(request.url);
-    const searchCategoria = searchParams.get("categoria");
-    const searchSubCategoria = searchParams.get("subCategoria");
+    const searchNome = searchParams.get("nome");
+
 
     try {
 
         const response = await prismaClient.produtos.findMany({
             where: {
-                categoria: searchCategoria as string,
-                subcategoria: searchSubCategoria as string
+                nome: searchNome as string,
             }
         })
 

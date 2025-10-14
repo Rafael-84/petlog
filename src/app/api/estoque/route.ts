@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import prismaClient from "@/lib/prisma";
 
+
 export async function GET(request: Request) {
 
     const { searchParams } = new URL(request.url);
@@ -34,10 +35,10 @@ export async function POST(request: Request) {
                 custo,
                 preco: preco,
                 quantidade,
-                validade,
+                validade: validade ? validade : "sem validade",
                 image_url,
-                desconto: desconto ? desconto : "",
-                preco_desconto: precoDesconto ? precoDesconto : ""
+                desconto: desconto ? desconto : 0,
+                preco_desconto: precoDesconto ? precoDesconto : 0
 
             }
         })
@@ -49,4 +50,33 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Failed to create new product" }, { status: 400 })
     }
 
+}
+
+
+export async function PATCH(request: Request) {
+    const { quantidade, uuid, id } = await request.json();
+
+    const findProduct = await prismaClient.produtos.findFirst({
+        where: {
+            uuid: uuid as string
+        }
+    })
+
+    try {
+
+        await prismaClient.produtos.update({
+            where: {
+                id: id,
+                uuid: uuid as string
+            },
+            data: {
+                quantidade: quantidade
+            }
+        })
+
+        return NextResponse.json({ message: "Product updated successfully!" }, { status: 200 })
+
+    } catch {
+        return NextResponse.json({ message: "Failed to update product" }, { status: 400 })
+    }
 }

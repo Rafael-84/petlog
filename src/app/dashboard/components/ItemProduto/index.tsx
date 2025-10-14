@@ -13,6 +13,7 @@ export function ItemProduto({ produto }: ProdutoProps) {
     function abrirEdicao(produto: Produto) {
         setProduto(produto)
     }
+
     return (
         <tr className="border-b-2 border-b-slate-200 last:border-b-0 h-16 bg-white hover:bg-slate-200 hover:duration-300 select-none" >
             <td className="hidden lg:table-cell">
@@ -28,19 +29,19 @@ export function ItemProduto({ produto }: ProdutoProps) {
 
             <td className="text-center text-gray-700 font-medium pr-2 lg:pr-0 text-xs lg:text-sm select-none">{produto.categoria}</td>
 
-            <td className="hidden lg:table-cell lg:text-center lg:text-gray-700 lg:font-medium select-none">{produto.fornecedor}</td>
+            <td className="hidden lg:table-cell lg:text-center text-gray-700 lg:font-medium select-none">{produto.fornecedor}</td>
 
-            <td className="hidden lg:table-cell lg:text-center lg:text-gray-700 lg:font-medium select-none">{Number(produto.custo).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
+            <td className="hidden lg:table-cell lg:text-center text-gray-700 lg:text-base lg:font-medium select-none">{Number(produto.custo).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
 
-            <td className="text-center text-gray-700 font-medium text-xs lg:text-sm select-none">{Number(produto.preco).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
+            <td className="text-center text-gray-700 font-medium text-xs lg:text-base  select-none">{Number(produto.preco).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
 
-            <td className={`text-center font-bold text-xs lg:text-sm select-none ${Number(produto.quantidade) > 15 ? "text-green-500" : Number(produto.quantidade) <= 15 && Number(produto.quantidade) >= 10 ? "text-yellow-500" : "text-red-500"}`}>{Number(produto.quantidade)}</td>
+            <td className={`text-center text-xs lg:text-base  select-none ${Number(produto.quantidade) > 15 ? "text-green-600 font-medium" : Number(produto.quantidade) <= 15 && Number(produto.quantidade) >= 10 ? "text-yellow-600 font-bold" : "text-red-500 font-extrabold"}`}>{Number(produto.quantidade)}</td>
 
             <td className="hidden lg:table-cell lg:text-center lg:text-gray-700 lg:font-medium select-none">10</td>
 
             {Number(produto.quantidade) > 15 && (
                 <td className="hidden lg:table-cell">
-                    <div className="flex items-center justify-center text-green-500 gap-2 font-medium select-none">
+                    <div className="flex items-center justify-center text-green-600 gap-2 font-medium select-none">
                         <CheckIcon />
                         <span>Disponível</span>
                     </div>
@@ -49,7 +50,7 @@ export function ItemProduto({ produto }: ProdutoProps) {
 
             {Number(produto.quantidade) <= 15 && Number(produto.quantidade) >= 10 && (
                 <td className="hidden lg:table-cell">
-                    <div className="flex items-center justify-center text-yellow-500 gap-2 font-medium select-none">
+                    <div className="flex items-center justify-center text-yellow-600 gap-2 font-medium select-none">
                         <WarningIcon />
                         <span>Estoque baixo</span>
                     </div>
@@ -58,7 +59,7 @@ export function ItemProduto({ produto }: ProdutoProps) {
 
             {Number(produto.quantidade) < 10 && (
                 <td className="hidden lg:table-cell">
-                    <div className="flex items-center justify-center text-red-500 gap-2 font-medium select-none">
+                    <div className="flex items-center justify-center text-red-500 gap-2 font-bold select-none">
                         <SirenIcon />
                         {Number(produto.quantidade) === 0 ? <span>Sem estoque</span> : <span>Estoque crítico</span>}
                     </div>

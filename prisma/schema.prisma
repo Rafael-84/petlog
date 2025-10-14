@@ -17,16 +17,16 @@ datasource db {
 model Produtos {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   nome           String
-  preco          String
+  preco          Float
   categoria      String
   subcategoria   String
   fornecedor     String
-  custo          String
-  desconto       String?
-  preco_desconto String?
+  custo          Float
+  desconto       Int?
+  preco_desconto Float?
   uuid           String
   image_url      Json
-  quantidade     String
+  quantidade     Int
   validade       String
   created_at     DateTime? @default(now())
   updated_at     DateTime? @default(now())
