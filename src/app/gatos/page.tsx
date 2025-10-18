@@ -1,105 +1,55 @@
-"use client"
-import { HeaderCategoria } from "../cachorros/components/_headerCategoriaCachorro"
-import { Recomendado } from "@/components/recomendados";
+import { ProdutoProp } from "@/utils/produtos.type";
+import { allProductsCats } from "./_actions/all-products/get-products"
 import Image from "next/image";
-import gato from "../../../public/gato-bg.png";
-import { Container } from "@/components/container";
+import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
 
 
-import produto1 from "../../../public/areia-gato.png";
-import { useState } from "react";
-import { RecomendadoProps } from "@/components/recomendados";
-import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react";
-import { NossosServicos } from "../components/home/servicos";
-import { Marcas } from "../components/home/marcas";
-import { Footer } from "../components/home/footer";
+export default async function RacoesGatos() {
 
-
-export default function Gatos() {
-
-    const [lista, setLIsta] = useState<RecomendadoProps[]>([
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: "", image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: "", image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: "", image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: "", image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: "", image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: "", image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-        { name: "Ração Golden Special para Cães Adultos Sabor Frango e Carne", price: 149.99, desconto: 10, image: produto1 },
-
-    ]);
-
-
+    const produtosGatos = await allProductsCats();
+    const todos: ProdutoProp[] = produtosGatos.produtos as ProdutoProp[];
 
     return (
-        <>
 
-            <section className="lg:bg-[url(../../public/gato-bg.png)] lg:bg-contain lg:bg-no-repeat lg:bg-top-right bg-white  lg:bg-white/60 lg:bg-blend-overlay pb-2 z-10 relative">
-                <div>
-                    <Image className="object-cover  opacity-40 lg:hidden" src={gato} alt="Foto do cachorro" fill sizes="100vw" />
-
-                    <div className="bg-white inset-0 absolute opacity-30 lg:hidden"></div>
+        <main>
+            <section className="flex flex-col">
+                <div className="mb-8">
+                    <h2 className="text-xl text-[#6C0020] font-medium ">Todos os Produtos</h2>
                 </div>
 
+                <div className="flex flex-row gap-4">
+                    {todos.map((item) => (
+                        <article key={item.id} className=" flex items-center  w-[200px] flex-col p-1 shadow shadow-black/20 rounded-lg hover:scale-105 duration-300  " >
+                            <div className=" flex  mx-auto  flex-col  bg-white border border-[#ff1d09] p-1 rounded-lg ">
+                                <div className="relative w-[150px] h-[150px] cursor-pointer">
+                                    {(item.image_url) && item.image_url.length > 0 && (
+                                        <Image src={item.image_url[0].url} fill alt={item.nome} priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                                    )}
+                                </div>
+                                <div className="flex items-center justify-between px-4">
+                                    <HeartIcon size={24} className="cursor-pointer hover:scale-125 duration-300" />
+                                    <PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer hover:scale-125 duration-300" />
+                                </div>
+                            </div>
+                            <div className="w-full px-1 mt-2 flex flex-col items-start justify-between gap-2 relative min-h-[120px]">
+                                <p className=" text-sm pl-3">{item.nome}</p>
+                                {!item.desconto && item.preco && (
+                                    <span className="font-bold text-gray-700 pl-3 lg:pb-10">{item.preco.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</span>
+                                )}
 
+                                {item.desconto !== 0 && item.preco_desconto !== 0 && (
+                                    <p className="font-semibold text-gray-700 pl-3 text-xs ">De: <span className="line-through">{Number(item.preco.toFixed(2)).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</span></p>
+                                )}
 
-                <h1 className="bg-transparent text-center pt-12 text-[#00937A] text-2xl font-bold relative">Gatos</h1>
-
-
-                <div className=" z-10 relative">
-                    <Recomendado />
+                                {item.desconto !== 0 && item.preco_desconto !== 0 && (
+                                    <p className="font-bold text-[#8B0029] text-sm flex flex-col gap-2 pl-3">Por: {Number(item.preco_desconto!!.toFixed(2)).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}  <span className="text-xs">{item.desconto}% de desconto</span></p>
+                                )}
+                            </div>
+                        </article>
+                    ))}
                 </div>
             </section>
-            <main>
-                <section className="bg-[#fafafa]">
-                    <Container>
-                        <HeaderCategoria color="#00937A" />
+        </main>
 
-
-                        <div className=" flex flex-wrap gap-6 mt-16 container pl-20 space-y-12 ">
-                            {lista.map((item, index) => (
-                                <article key={index} className=" flex items-center w-[200px] flex-col p-1  rounded-lg" >
-                                    <div className=" flex  mx-auto  flex-col  bg-white border border-[#ff1d09] p-1 rounded-lg ">
-                                        <div className="relative ">
-                                            <Image src={item.image} alt="Imagem do Produto" priority />
-                                        </div>
-                                        <div className="flex items-center justify-between px-4">
-                                            <HeartIcon size={24} />
-                                            <PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer" />
-                                        </div>
-                                    </div>
-                                    <div className="w-full px-1 mt-2 flex flex-col items-start justify-between gap-2 relative  ">
-                                        <p className=" text-sm">{item.name}</p>
-                                        {!item.desconto && item.price && (
-                                            <span className="font-bold text-gray-700 lg:pb-10">{item.price.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</span>
-                                        )}
-
-                                        {item.desconto && item.price && (
-                                            <p className="font-semibold text-gray-700 text-xs ">De: <span className="line-through">{Number(item.price.toFixed(2)).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</span></p>
-                                        )}
-
-                                        {item.desconto && item.price && (
-                                            <p className="font-bold text-[#8B0029] text-sm flex flex-col gap-2">Por: {Number((item.price * (1 - (Number(item.desconto) / 100))).toFixed(2)).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}  <span className="text-xs">{item.desconto}% de desconto</span></p>
-                                        )}
-                                    </div>
-                                </article>
-                            ))}
-                        </div>
-                    </Container>
-                </section>
-            </main>
-            <NossosServicos />
-            <Marcas />
-            <Footer />
-
-        </>
-
-    );
+    )
 }

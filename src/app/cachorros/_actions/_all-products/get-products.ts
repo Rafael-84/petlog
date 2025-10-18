@@ -24,3 +24,27 @@ export async function buscarProdutosCachorrosRacao() {
 
     return { produtos };
 }
+
+export async function buscarProdutosCachorrosBrinquedos() {
+    const produtos = await prisma.produtos.findMany({
+        where: {
+            categoria: "cachorro",
+            subcategoria: "brinquedos"
+        },
+
+    });
+
+    return { produtos };
+}
+
+export async function buscarProdutosCachorrosHigiene() {
+    const produtos = await prisma.produtos.findMany({
+        where: {
+            categoria: "cachorro",
+            subcategoria: "higiene"
+        },
+
+    });
+
+    return { produtos };
+}

@@ -1,4 +1,3 @@
-import { Header } from "@/components/header";
 import dogAmarelo from "../../../public/hero-dog.webp";
 import { HeaderCategoria } from "./components/_headerCategoriaCachorro";
 import { Recomendado } from "@/components/recomendados";
@@ -12,7 +11,7 @@ import { Footer } from "../components/home/footer";
 export default function LayoutCachorros({ children }: { children: React.ReactNode }) {
     return (
         <section>
-            <>
+            <main>
 
                 <section className="lg:bg-[url(../../public/hero-dog.webp)] lg:bg-contain lg:bg-no-repeat lg:bg-top-right bg-white  lg:bg-white/60 lg:bg-blend-overlay pb-2 z-10 relative">
                     <div>
@@ -30,24 +29,24 @@ export default function LayoutCachorros({ children }: { children: React.ReactNod
                         <Recomendado />
                     </div>
                 </section>
-                <main>
+                <>
                     <section className="bg-[#fafafa]">
                         <Container>
                             <HeaderCategoria color="#BC721D" />
 
 
-                            <div className=" flex flex-wrap gap-6 mt-16 container pl-20 space-y-12 ">
+                            <div className=" flex flex-wrap gap-6 mt-16 container pl-8 space-y-12 pb-4 ">
                                 {children}
 
                             </div>
                         </Container>
                     </section>
-                </main>
+                </>
                 <NossosServicos />
                 <Marcas />
                 <Footer />
 
-            </>
+            </main>
 
         </section>
     )

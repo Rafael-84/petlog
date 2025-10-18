@@ -1,25 +1,24 @@
-import { buscarProdutosCachorros } from "./_actions/_all-products/get-products";
+import { ProdutoProp } from "@/utils/produtos.type";
 import Image from "next/image";
 import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
-import { ProdutoProp } from "@/utils/produtos.type";
+import { getBriquendosAves } from "../_actions/all-products/get-products";
 
 
 
-
-export default async function Cachorros() {
-
-    const buscarTodosProdutos = await buscarProdutosCachorros()
-    const todos: ProdutoProp[] = buscarTodosProdutos.produtos as ProdutoProp[];
+export default async function RacoesAves() {
+    const brinquedosAves = await getBriquendosAves();
+    const brinquedos: ProdutoProp[] = brinquedosAves.brinquedos as ProdutoProp[];
 
     return (
+
         <main>
             <section className="flex flex-col">
                 <div className="mb-8">
-                    <h2 className="text-xl text-[#6C0020] font-medium ">Todos os Produtos</h2>
+                    <h2 className="text-xl text-[#6C0020] font-medium ">Brinquedos e Diversão</h2>
                 </div>
 
                 <div className="flex flex-row gap-4">
-                    {todos.map((item) => (
+                    {brinquedos.map((item) => (
                         <article key={item.id} className=" flex items-center  w-[200px] flex-col p-1 shadow shadow-black/20 rounded-lg hover:scale-105 duration-300  " >
                             <div className=" flex  mx-auto  flex-col  bg-white border border-[#ff1d09] p-1 rounded-lg ">
                                 <div className="relative w-[150px] h-[150px] cursor-pointer">
@@ -51,5 +50,6 @@ export default async function Cachorros() {
                 </div>
             </section>
         </main>
-    );
+
+    )
 }

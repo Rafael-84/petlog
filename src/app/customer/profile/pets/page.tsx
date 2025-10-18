@@ -1,10 +1,10 @@
 
 
-export default function HigieneDog() {
+export default function Pets() {
     return (
         <main>
             <section>
-                <h1>HigieneDog</h1>
+                <h1>Perfil pet</h1>
             </section>
         </main>
     )
