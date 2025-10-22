@@ -27,7 +27,7 @@ export default function AvesLayout({ children }: { children: React.ReactNode }) 
 
 
                 <div className=" z-10 relative">
-                    <Recomendado />
+                    <Recomendado categoria="ave" />
                 </div>
             </section>
             <main>

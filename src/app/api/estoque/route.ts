@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import prismaClient from "@/lib/prisma";
 
 
-export async function GET(request: Request) {
+export async function GET(/* request: Request */) {
 
-    const { searchParams } = new URL(request.url);
+    /* const { searchParams } = new URL(request.url);
     const searchCategoria = searchParams.get("categoria");
-    const searchSubCategoria = searchParams.get("subCategoria");
+    const searchSubCategoria = searchParams.get("subCategoria"); */
 
     try {
 

@@ -2,11 +2,18 @@ import { buscarProdutosCachorros } from "./_actions/_all-products/get-products";
 import Image from "next/image";
 import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ProdutoProp } from "@/utils/produtos.type";
+import Link from "next/link";
 
 
+interface PropsParams {
+    params: {
+        id: string
+    }
+}
+
+export default async function Cachorros({ params }: PropsParams) {
 
 
-export default async function Cachorros() {
 
     const buscarTodosProdutos = await buscarProdutosCachorros()
     const todos: ProdutoProp[] = buscarTodosProdutos.produtos as ProdutoProp[];
@@ -22,11 +29,13 @@ export default async function Cachorros() {
                     {todos.map((item) => (
                         <article key={item.id} className=" flex items-center  w-[200px] flex-col p-1 shadow shadow-black/20 rounded-lg hover:scale-105 duration-300  " >
                             <div className=" flex  mx-auto  flex-col  bg-white border border-[#ff1d09] p-1 rounded-lg ">
-                                <div className="relative w-[150px] h-[150px] cursor-pointer">
-                                    {(item.image_url) && item.image_url.length > 0 && (
-                                        <Image src={item.image_url[0].url} fill alt={item.nome} priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                                    )}
-                                </div>
+                                <Link href={`/${item.id}`}>
+                                    <div className="relative w-[150px] h-[150px] cursor-pointer">
+                                        {(item.image_url) && item.image_url.length > 0 && (
+                                            <Image src={item.image_url[0].url} fill alt={item.nome} priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                                        )}
+                                    </div>
+                                </Link>
                                 <div className="flex items-center justify-between px-4">
                                     <HeartIcon size={24} className="cursor-pointer hover:scale-125 duration-300" />
                                     <PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer hover:scale-125 duration-300" />

@@ -26,7 +26,7 @@ export default function LayoutCachorros({ children }: { children: React.ReactNod
 
 
                     <div className=" z-50 relative">
-                        <Recomendado />
+                        <Recomendado categoria="cachorro" />
                     </div>
                 </section>
                 <>

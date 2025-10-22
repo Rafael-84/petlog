@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main>
       <HeroHome />
-      <Recomendado />
+      <Recomendado categoria="all" />
       <Cuidados />
       <NossosServicos />
       <Marcas />

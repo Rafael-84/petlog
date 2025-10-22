@@ -26,8 +26,8 @@ export default function LayoutCats({ children }: { children: React.ReactNode }) 
 
                 <h1 className="bg-transparent text-center pt-12 text-[#00937A] text-2xl font-bold relative">Gatos</h1>
 
-                <div className=" z-10 relative">
-                    <Recomendado />
+                <div className=" z-50 relative">
+                    <Recomendado categoria="gato" />
                 </div>
             </section>
             <>
@@ -35,7 +35,7 @@ export default function LayoutCats({ children }: { children: React.ReactNode }) 
                     <Container>
                         <HeaderCategoria color="#00937A" />
 
-                        <div className=" flex flex-wrap gap-6 mt-16 container pl-8 space-y-12 pb-4">
+                        <div className="  flex flex-wrap gap-6 mt-16 container pl-8 space-y-12 pb-4 ">
                             {children}
                         </div>
                     </Container>

@@ -19,7 +19,7 @@ export interface ProdutosProps {
 
 }
 
-interface ImageProps {
+export interface ImageProps {
     name: string;
     url: string;
     urlPreview: string;
