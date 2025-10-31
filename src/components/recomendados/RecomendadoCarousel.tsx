@@ -8,6 +8,7 @@ import {
     PlusCircleIcon,
 } from "@phosphor-icons/react";
 import { ProdutoProp } from "@/utils/produtos.type";
+import Link from "next/link";
 
 
 
@@ -46,9 +47,11 @@ export function RecomendadoCarousel({ produto }: { produto: ProdutoProp[] }) {
                                     <div className="shadow shadow-black/20 rounded-lg hover:scale-105 duration-300 px-3 bg-white/70  py-1 " >
                                         <div className="flex-1  flex flex-col p-1 bg-white border border-[#ff1d09] rounded-lg " >
                                             <div className=" flex w-40 mx-auto  flex-col  bg-white ">
-                                                <div className="relative w-[150px] h-[150px] ">
-                                                    <Image src={item.image_url && item.image_url.length > 0 ? item.image_url[0].url : ""} alt="Imagem do Produto" className="object-cover" fill priority />
-                                                </div>
+                                                <Link href={`/recomendado/${item.id}`}>
+                                                    <div className="relative w-[150px] h-[150px] cursor-pointer">
+                                                        <Image src={item.image_url && item.image_url.length > 0 ? item.image_url[0].url : ""} alt="Imagem do Produto" className="object-cover" fill priority />
+                                                    </div>
+                                                </Link>
                                                 <div className="flex items-center justify-between px-4">
                                                     <HeartIcon size={24} />
                                                     <PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer" />

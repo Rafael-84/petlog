@@ -1,11 +1,11 @@
-import dogAmarelo from "../../../public/hero-dog.webp";
-import { HeaderCategoria } from "./components/_headerCategoriaCachorro";
+import dogAmarelo from "../../../../public/hero-dog.webp";
+import { HeaderCategoria } from "../components/_headerCategoriaCachorro";
 import { Recomendado } from "@/components/recomendados";
 import { Container } from "@/components/container";
 import Image from "next/image";
-import { NossosServicos } from "../components/home/servicos";
-import { Marcas } from "../components/home/marcas";
-import { Footer } from "../components/home/footer";
+import { NossosServicos } from "../../components/home/servicos";
+import { Marcas } from "../../components/home/marcas";
+import { Footer } from "../../components/home/footer";
 
 
 export default function LayoutCachorros({ children }: { children: React.ReactNode }) {
