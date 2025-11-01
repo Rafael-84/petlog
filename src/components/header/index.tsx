@@ -26,8 +26,8 @@ export function Header() {
 
                 <nav className="flex items-center gap-4">
                     <Link href="/cachorros/products" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300  ${ativo === "/cachorros/products" ? "text-[#C7033D]" : ""} `} onClick={() => setAtivo("/cachorros/products")}><span className="sr-only">Pagina cachorros</span>Cachorros</Link>
-                    <Link href="/gatos" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300 ${ativo === "/gatos" ? "text-[#C7033D]" : ""} `} onClick={() => setAtivo("/gatos")}><span className="sr-only">Pagina gatos</span>Gatos</Link>
-                    <Link href="/aves" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300 ${ativo === "/aves" ? "text-[#C7033D]" : ""}`} onClick={() => setAtivo("/aves")}><span className="sr-only">Pagina aves</span>Aves</Link>
+                    <Link href="/gatos/products" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300 ${ativo === "/gatos/products" ? "text-[#C7033D]" : ""} `} onClick={() => setAtivo("/gatos/products")}><span className="sr-only">Pagina gatos</span>Gatos</Link>
+                    <Link href="/aves/products" className={`text-[#6C0020] font-bold hover:text-[#C7033D] duration-300 ${ativo === "/aves/products" ? "text-[#C7033D]" : ""}`} onClick={() => setAtivo("/aves/products")}><span className="sr-only">Pagina aves</span>Aves</Link>
                 </nav>
 
                 <nav className="flex items-center gap-4">

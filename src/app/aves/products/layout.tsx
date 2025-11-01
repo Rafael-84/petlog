@@ -1,11 +1,12 @@
 
-import { HeaderCategoria } from "../aves/_components/_headerCategoriaAves"
+import { HeaderCategoria } from "../_components/_headerCategoriaAves"
 import { Recomendado } from "@/components/recomendados";
 import Image from "next/image";
-import passaro from "../../../public/passaro-bg.png"; import { Container } from "@/components/container";
-import { NossosServicos } from "../components/home/servicos";
-import { Marcas } from "../components/home/marcas";
-import { Footer } from "../components/home/footer";
+import passaro from "../../../../public/passaro-bg.png";
+import { Container } from "@/components/container";
+import { NossosServicos } from "../../components/home/servicos";
+import { Marcas } from "../../components/home/marcas";
+import { Footer } from "../../components/home/footer";
 
 
 export default function AvesLayout({ children }: { children: React.ReactNode }) {

@@ -1,7 +1,7 @@
-import { Container } from "@/components/container";
-import { buscarDetalhesProdutosDog } from "../../_actions/_all-products/get-products";
-import Image from "next/image";
 import { ProdutoProp } from "@/utils/produtos.type";
+import { buscarDetalhesProdutosCats } from "../../_actions/all-products/get-products";
+import { Container } from "@/components/container";
+import Image from "next/image";
 
 
 interface PropsParams {
@@ -10,10 +10,10 @@ interface PropsParams {
     }
 }
 
-export default async function Details({ params }: PropsParams) {
+export default async function DetailsCats({ params }: PropsParams) {
 
     const { id } = await params;
-    const detalhesDoProduto = await buscarDetalhesProdutosDog(id);
+    const detalhesDoProduto = await buscarDetalhesProdutosCats(id);
     const detail: ProdutoProp = detalhesDoProduto.detail as ProdutoProp
 
     return (

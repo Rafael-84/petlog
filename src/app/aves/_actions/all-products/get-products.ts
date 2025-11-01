@@ -43,3 +43,15 @@ export async function getHigieneAves() {
 
     return { higiene }
 }
+
+export async function buscarDetalhesProdutosBird(id: string) {
+    const detail = await prisma.produtos.findUnique({
+        where: {
+            id: id
+        },
+
+    });
+
+    return { detail };
+
+}

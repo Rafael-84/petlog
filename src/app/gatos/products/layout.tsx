@@ -1,11 +1,11 @@
-import { HeaderCategoria } from "./_components/_headerCategoriaGatos"
+import { HeaderCategoria } from "../_components/_headerCategoriaGatos"
 import { Recomendado } from "@/components/recomendados";
 import Image from "next/image";
-import gato from "../../../public/gato-bg.png";
+import gato from "../../../../public/gato-bg.png";
 import { Container } from "@/components/container";
-import { NossosServicos } from "../components/home/servicos";
-import { Marcas } from "../components/home/marcas";
-import { Footer } from "../components/home/footer";
+import { NossosServicos } from "../../components/home/servicos";
+import { Marcas } from "../../components/home/marcas";
+import { Footer } from "../../components/home/footer";
 
 
 

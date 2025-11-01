@@ -1,30 +1,33 @@
 import { ProdutoProp } from "@/utils/produtos.type";
-import { getRacoesCats } from "../_actions/all-products/get-products";
 import Image from "next/image";
 import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
+import { getRacoesAves } from "../../_actions/all-products/get-products";
+import Link from "next/link";
 
 
-export default async function RacoesCats() {
-    const produtosGatos = await getRacoesCats();
-    const racoes: ProdutoProp[] = produtosGatos.racoes as ProdutoProp[];
+export default async function RacoesAves() {
+    const racoesAves = await getRacoesAves();
+    const racoes: ProdutoProp[] = racoesAves.racoes as ProdutoProp[];
 
     return (
 
         <main>
             <section className="flex flex-col">
                 <div className="mb-8">
-                    <h2 className="text-xl text-[#6C0020] font-medium ">Rações</h2>
+                    <h2 className="text-xl text-[#6C0020] font-medium ">Rações e Alimentação</h2>
                 </div>
 
                 <div className="flex flex-row gap-4">
                     {racoes.map((item) => (
                         <article key={item.id} className=" flex items-center  w-[200px] flex-col p-1 shadow shadow-black/20 rounded-lg hover:scale-105 duration-300  " >
                             <div className=" flex  mx-auto  flex-col  bg-white border border-[#ff1d09] p-1 rounded-lg ">
-                                <div className="relative w-[150px] h-[150px] cursor-pointer">
-                                    {(item.image_url) && item.image_url.length > 0 && (
-                                        <Image src={item.image_url[0].url} fill alt={item.nome} priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                                    )}
-                                </div>
+                                <Link href={`/aves/products/${item.id}`}>
+                                    <div className="relative w-[150px] h-[150px] cursor-pointer">
+                                        {(item.image_url) && item.image_url.length > 0 && (
+                                            <Image src={item.image_url[0].url} fill alt={item.nome} priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                                        )}
+                                    </div>
+                                </Link>
                                 <div className="flex items-center justify-between px-4">
                                     <HeartIcon size={24} className="cursor-pointer hover:scale-125 duration-300" />
                                     <PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer hover:scale-125 duration-300" />

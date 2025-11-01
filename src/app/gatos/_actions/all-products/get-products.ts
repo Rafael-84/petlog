@@ -44,3 +44,15 @@ export async function getHigieneCats() {
 
     return { higiene };
 }
+
+export async function buscarDetalhesProdutosCats(id: string) {
+    const detail = await prisma.produtos.findUnique({
+        where: {
+            id: id
+        },
+
+    });
+
+    return { detail };
+
+}

@@ -25,6 +25,7 @@ export async function buscarProdutosCachorrosRacao() {
     return { produtos };
 }
 
+
 export async function buscarProdutosCachorrosBrinquedos() {
     const produtos = await prisma.produtos.findMany({
         where: {
@@ -47,4 +48,16 @@ export async function buscarProdutosCachorrosHigiene() {
     });
 
     return { produtos };
+}
+
+export async function buscarDetalhesProdutosDog(id: string) {
+    const detail = await prisma.produtos.findUnique({
+        where: {
+            id: id
+        },
+
+    });
+
+    return { detail };
+
 }

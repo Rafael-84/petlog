@@ -11,13 +11,13 @@ export function HeaderCategoria({ color }: { color: string }) {
     return (
         <header className="bg-transparent flex flex-col space-y-4 lg:space-y-0 sm:flex-row items-center justify-between lg:px-8 py-2 mt-14">
             <nav className="flex items-center gap-2">
-                <Link href="/gatos" className={`${linkAtivo === "todos" ? "font-bold" : ""} text-lg ${linkAtivo !== "todos" ? "font-medium" : ""} hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("todos")}   >Todos</Link>
+                <Link href="/gatos/products" className={`${linkAtivo === "todos" ? "font-bold" : ""} text-lg ${linkAtivo !== "todos" ? "font-medium" : ""}  hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("todos")}   >Todos</Link>
 
-                <Link href="/gatos/racoes" className={`${linkAtivo === "racoes" ? "font-bold" : ""} text-lg ${linkAtivo !== "racoes" ? "font-medium" : ""} hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("racoes")}>Rações</Link>
+                <Link href="/gatos/products/racoes" className={`${linkAtivo === "racoes" ? "font-bold" : ""} text-lg ${linkAtivo !== "racoes" ? "font-medium" : ""} hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("racoes")}>Rações</Link>
 
-                <Link href="/gatos/brinquedos" className={`${linkAtivo === "brinquedos" ? "font-bold" : ""} text-lg ${linkAtivo !== "brinquedos" ? "font-medium" : ""} hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("brinquedos")}>Brinquedos</Link>
+                <Link href="/gatos/products/brinquedos" className={`${linkAtivo === "brinquedos" ? "font-bold" : ""} text-lg ${linkAtivo !== "brinquedos" ? "font-medium" : ""} hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("brinquedos")}>Brinquedos</Link>
 
-                <Link href="/gatos/higiene" className={`${linkAtivo === "higiene" ? "font-bold" : ""} text-lg ${linkAtivo !== "higiene" ? "font-medium" : ""} hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("higiene")}>Higiene</Link>
+                <Link href="/gatos/products/higiene" className={`${linkAtivo === "higiene" ? "font-bold" : ""} text-lg ${linkAtivo !== "higiene" ? "font-medium" : ""} hover:font-bold hover:scale-105 duration-200`} style={{ color: color }} onClick={() => setLinkAtivo("higiene")}>Higiene</Link>
             </nav>
             <form className="flex items-center lg:w-1/4 px-1">
                 <input type="text" placeholder="Digite um produto..." className=" bg-white py-0.5  px-2 w-full outline-none border border-gray-500 rounded-l-full" />
