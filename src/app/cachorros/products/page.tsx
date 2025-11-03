@@ -1,8 +1,8 @@
-import { buscarProdutosCachorros } from "../_actions/_all-products/get-products";
 import Image from "next/image";
 import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ProdutoProp } from "@/utils/produtos.type";
 import Link from "next/link";
+import { buscarProdutosCachorros } from "../_actions/_all-products/get-products";
 
 
 interface PropsParams {

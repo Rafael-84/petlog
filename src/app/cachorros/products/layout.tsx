@@ -1,5 +1,5 @@
 import dogAmarelo from "../../../../public/hero-dog.webp";
-import { HeaderCategoria } from "../components/_headerCategoriaCachorro";
+import { HeaderCategoria } from "@/app/cachorros/_components/_headerCategoriaCachorros";
 import { Recomendado } from "@/components/recomendados";
 import { Container } from "@/components/container";
 import Image from "next/image";
