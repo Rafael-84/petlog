@@ -12,10 +12,10 @@ export function ImageDetail({ produto }: { produto: ProdutoProp }) {
 
     return (
         <>
-            <section className="flex ">
+            <section className="flex gap-4">
 
 
-                <div className="flex flex-col mt-18 space-y-5">
+                <div className="flex flex-col mt-12 space-y-5">
                     {produto.image_url && produto.image_url.length > 0 ? produto?.image_url.map((item, index) => (
 
                         <button key={index} onClick={() => setImgSelecionada(index)} >
@@ -29,8 +29,8 @@ export function ImageDetail({ produto }: { produto: ProdutoProp }) {
                 </div>
 
 
-                <div>
-                    <Image src={produto.image_url && produto.image_url.length > 0 ? produto?.image_url[imgSelecionada].url : ""} alt="Foto do cachorro" width={400} height={400} quality={100} priority />
+                <div className=" shadow rounded-md overflow-hidden relative w-[350px] h-[300px] mt-8">
+                    <Image className="object-contain" src={produto.image_url && produto.image_url.length > 0 ? produto?.image_url[imgSelecionada].url : ""} alt="Foto do cachorro" fill quality={100} priority />
                 </div>
             </section>
         </>

@@ -3,6 +3,8 @@ import { ProdutoProp } from "@/utils/produtos.type";
 import { getProductsDetail } from "./_actions/get-product-detail";
 import { Container } from "@/components/container";
 import { ImageDetail } from "../_components";
+import { useContext } from "react";
+import { CartContext } from "@/contexts/CartContext";
 
 interface PropsParams {
     params: {
@@ -16,9 +18,7 @@ export default async function DetailsHome({ params }: PropsParams) {
     const detalhesDoProduto: ProdutoProp = await getProductsDetail(id) as ProdutoProp;
     console.log(detalhesDoProduto);
 
-
-
-
+    const { addItemCart } = useContext(CartContext);
 
     return (
         <main>
@@ -28,15 +28,15 @@ export default async function DetailsHome({ params }: PropsParams) {
                         <div className="flex  justify-center gap-4">
                             <ImageDetail produto={detalhesDoProduto} />
                         </div>
-                        <div className=" mt-18 w-1/2 space-y-5">
+                        <div className=" mt-12 w-1/2 space-y-5">
                             <div className="flex gap-2 flex-col">
-                                <h1 className="text-slate-600 font-bold text-xl">{detalhesDoProduto.nome}</h1>
-                                <p className="text-slate-800 text-lg line-clamp-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic nesciunt non, quaerat perspiciatis ea voluptas debitis doloremque quidem, illo ratione provident natus sunt ullam, dignissimos aperiam fuga soluta. Nobis, placeat.</p>
+                                <h1 className="text-slate-600 font-bold text-lg">{detalhesDoProduto.nome}</h1>
+                                <p className="text-slate-800 line-clamp-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic nesciunt non, quaerat perspiciatis ea voluptas debitis doloremque quidem, illo ratione provident natus sunt ullam, dignissimos aperiam fuga soluta. Nobis, placeat.</p>
                             </div>
                             <div>
 
                                 {!detalhesDoProduto.desconto && detalhesDoProduto.preco && (
-                                    <span className="font-bold text-gray-700 text-xl lg:pb-10">{detalhesDoProduto.preco.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</span>
+                                    <p className="font-bold text-gray-700 text-lg lg:pb-10">{Number(detalhesDoProduto.preco.toFixed(2)).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</p>
                                 )}
 
                                 {detalhesDoProduto.desconto !== 0 && detalhesDoProduto.preco_desconto !== 0 && (

@@ -1,10 +1,10 @@
 "use client"
-import { Produto } from '@/utils/produtos.type';
+import { ProdutoProp } from '@/utils/produtos.type';
 import { createContext, ReactNode, useState } from 'react';
 
 interface EditarProdutoProps {
-    produto: Produto | null
-    setProduto: (item: Produto | null) => void
+    produto: ProdutoProp | null
+    setProduto: (item: ProdutoProp | null) => void
 
 
 }
@@ -13,7 +13,7 @@ export const EditEstoqueContext = createContext({} as EditarProdutoProps);
 
 export const EditEstoqueProvider = ({ children }: { children: ReactNode }) => {
 
-    const [produto, setProduto] = useState<Produto | null>(null)
+    const [produto, setProduto] = useState<ProdutoProp | null>(null)
 
     console.log(produto)
 

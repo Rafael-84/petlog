@@ -1,5 +1,5 @@
 "use client"
-import { EditEstoqueContext } from "@/providers/edit_estoque";
+import { EditEstoqueContext } from "@/contexts/EditEstoqueContext";
 import { FormEvent, useContext, useState } from "react";
 
 

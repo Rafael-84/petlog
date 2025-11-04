@@ -1,5 +1,5 @@
 import { HeaderAdmin } from "./components/headerAdmin";
-import { EditEstoqueProvider } from "@/providers/edit_estoque";
+import { EditEstoqueProvider } from "@/contexts/EditEstoqueContext";
 
 
 export default function LayoutDashboard({ children }: { children: React.ReactNode }) {

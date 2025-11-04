@@ -9,12 +9,15 @@ import {
 } from "@phosphor-icons/react";
 import { ProdutoProp } from "@/utils/produtos.type";
 import Link from "next/link";
+import { useContext } from "react";
+import { CartContext } from "@/contexts/CartContext";
 
 
 
 export function RecomendadoCarousel({ produto }: { produto: ProdutoProp[] }) {
 
     /* const recomendado = produto.produto.map(produto => produto) */
+    const { addItemCart } = useContext(CartContext);
 
 
 
@@ -54,7 +57,7 @@ export function RecomendadoCarousel({ produto }: { produto: ProdutoProp[] }) {
                                                 </Link>
                                                 <div className="flex items-center justify-between px-4">
                                                     <HeartIcon size={24} />
-                                                    <PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer" />
+                                                    <button ><PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer" /></button>
                                                 </div>
                                             </div>
                                         </div>

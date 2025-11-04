@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { PenIcon, TrashIcon, WarningIcon, CheckIcon, SirenIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { ProdutoProp, ProdutosProps } from "@/utils/produtos.type";
-import { EditEstoqueContext } from "@/providers/edit_estoque";
+import { EditEstoqueContext } from "@/contexts/EditEstoqueContext";
 
 export function ItemProduto({ produto }: ProdutosProps) {
 
