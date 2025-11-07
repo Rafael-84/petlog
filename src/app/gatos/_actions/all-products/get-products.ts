@@ -5,6 +5,14 @@ export async function allProductsCats() {
     const produtos = await prisma.produtos.findMany({
         where: {
             categoria: "gatos"
+        },
+        select: {
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
         }
     });
 
@@ -17,6 +25,14 @@ export async function getRacoesCats() {
         where: {
             categoria: "gatos",
             subcategoria: "racao"
+        },
+        select: {
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
         }
     })
 
@@ -28,6 +44,14 @@ export async function getBrinquedosCats() {
         where: {
             categoria: "gatos",
             subcategoria: "brinquedos"
+        },
+        select: {
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
         }
     })
 
@@ -39,6 +63,14 @@ export async function getHigieneCats() {
         where: {
             categoria: "gatos",
             subcategoria: "higiene"
+        },
+        select: {
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
         }
     })
 
@@ -50,6 +82,14 @@ export async function buscarDetalhesProdutosCats(id: string) {
         where: {
             id: id
         },
+        select: {
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
+        }
 
     });
 

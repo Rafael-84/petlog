@@ -1,8 +1,12 @@
+
 import Image from "next/image";
-import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
-import { ProdutoProp } from "@/utils/produtos.type";
+
+import { ExibirProdutoProp } from "@/utils/produtos.type";
 import Link from "next/link";
 import { buscarProdutosCachorros } from "../_actions/_all-products/get-products";
+
+import { AddCart } from "@/components/addCart";
+import { CartProps } from "@/contexts/CartContext";
 
 
 interface PropsParams {
@@ -11,12 +15,16 @@ interface PropsParams {
     }
 }
 
-export default async function Cachorros({ params }: PropsParams) {
+export default async function Cachorros() {
+
 
 
 
     const buscarTodosProdutos = await buscarProdutosCachorros()
-    const todos: ProdutoProp[] = buscarTodosProdutos.produtos as ProdutoProp[];
+    const todos: ExibirProdutoProp[] = buscarTodosProdutos.produtos as ExibirProdutoProp[];
+
+
+
 
     return (
         <main>
@@ -36,10 +44,7 @@ export default async function Cachorros({ params }: PropsParams) {
                                         )}
                                     </div>
                                 </Link>
-                                <div className="flex items-center justify-between px-4">
-                                    <HeartIcon size={24} className="cursor-pointer hover:scale-125 duration-300" />
-                                    <PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer hover:scale-125 duration-300" />
-                                </div>
+                                <AddCart item={item} />
                             </div>
                             <div className="w-full px-1 mt-2 flex flex-col items-start justify-between gap-2 relative min-h-[120px]">
                                 <p className=" text-sm pl-3">{item.nome}</p>

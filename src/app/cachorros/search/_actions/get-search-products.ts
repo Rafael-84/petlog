@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { ProdutosProps } from "@/utils/produtos.type";
+
 
 
 

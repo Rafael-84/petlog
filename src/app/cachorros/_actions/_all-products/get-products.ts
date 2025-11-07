@@ -7,6 +7,16 @@ export async function buscarProdutosCachorros() {
         where: {
             categoria: "cachorro"
         },
+        select: {
+            id: true,
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+            quantidade: true,
+
+        }
 
     });
 
@@ -19,6 +29,15 @@ export async function buscarProdutosCachorrosRacao() {
             categoria: "cachorro",
             subcategoria: "racao"
         },
+        select: {
+            id: true,
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
+        }
 
     });
 
@@ -32,7 +51,15 @@ export async function buscarProdutosCachorrosBrinquedos() {
             categoria: "cachorro",
             subcategoria: "brinquedos"
         },
+        select: {
+            id: true,
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
 
+        }
     });
 
     return { produtos };
@@ -44,6 +71,15 @@ export async function buscarProdutosCachorrosHigiene() {
             categoria: "cachorro",
             subcategoria: "higiene"
         },
+        select: {
+            id: true,
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
+        }
 
     });
 
@@ -55,6 +91,15 @@ export async function buscarDetalhesProdutosDog(id: string) {
         where: {
             id: id
         },
+        select: {
+            id: true,
+            nome: true,
+            image_url: true,
+            preco: true,
+            desconto: true,
+            preco_desconto: true,
+
+        }
 
     });
 

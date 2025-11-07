@@ -2,10 +2,10 @@
 import { useContext } from "react";
 import { PenIcon, TrashIcon, WarningIcon, CheckIcon, SirenIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
-import { ProdutoProp, ProdutosProps } from "@/utils/produtos.type";
+import { ProdutoProp } from "@/utils/produtos.type";
 import { EditEstoqueContext } from "@/contexts/EditEstoqueContext";
 
-export function ItemProduto({ produto }: ProdutosProps) {
+export function ItemProduto(produto: ProdutoProp) {
 
     const images = produto.image_url && produto.image_url.length > 0 ? produto.image_url[0].url : null
     const { setProduto } = useContext(EditEstoqueContext)

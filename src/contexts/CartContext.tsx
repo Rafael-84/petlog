@@ -1,6 +1,7 @@
 "use client"
+import { ImageProps } from "@/utils/produtos.type";
 import { useState, createContext } from "react";
-import { ImageProps, ProdutoProp } from "@/utils/produtos.type";
+
 
 
 interface CartContextData {
@@ -11,26 +12,33 @@ interface CartContextData {
     total: string;
 }
 
-interface CartProps {
-    /* id: string;
-    nome: string; */
-    produto: ProdutoProp
-    quantidade: number;
-    /* descricao?: string; */
+export interface CartProps extends CartTotalProp {
+
+    id: string | number;
+    nome: string;
     preco: number;
-    /* cover: ImageProps; */
-    total: number;
+    desconto?: number | null;
+    preco_desconto?: number | null;
+    image_url: ImageProps[] | null;
+    quantidade: number;
+
+
 }
+
+interface CartTotalProp {
+    total?: number;
+}
+
 
 export const CartContext = createContext({} as CartContextData);
 
 function CartProvider({ children }: { children: React.ReactNode }) {
-    const [cart, setCart] = useState<CartProps[]>([1]);
+    const [cart, setCart] = useState<CartProps[]>([]);
     const [total, setTotal] = useState("");
 
     function addItemCart(newItem: CartProps) {
 
-        const findIndex = cart.findIndex(item => item.produto.id === newItem.produto.id);
+        const findIndex = cart.findIndex(item => item.id === newItem.id);
         if (findIndex !== -1) {
             let cartList = cart
             cartList[findIndex].quantidade = cartList[findIndex].quantidade + 1;
@@ -49,7 +57,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
         getTotalProducts([...cart, data]);
     }
     function removeItemCart(item: CartProps) {
-        const findIndex = cart.findIndex(product => product.produto.id === item.produto.id)
+        const findIndex = cart.findIndex(product => product.id === item.id)
         if (cart[findIndex]?.quantidade > 1) {
             let cartList = cart;
             cartList[findIndex].quantidade = cartList[findIndex].quantidade - 1;
@@ -63,7 +71,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
 
     function getTotalProducts(items: CartProps[]) {
         let myCart = items;
-        let total = myCart.reduce((acc, obj) => { return acc + obj.total }, 0);
+        let total = myCart.reduce((acc, obj) => { return acc + obj.total!! }, 0);
         const resultadoFormatado = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         setTotal(resultadoFormatado)
     }
