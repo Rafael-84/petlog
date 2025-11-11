@@ -15,6 +15,8 @@ export async function buscarProdutosCachorros() {
             desconto: true,
             preco_desconto: true,
             quantidade: true,
+            categoria: true,
+
 
         }
 
@@ -36,7 +38,7 @@ export async function buscarProdutosCachorrosRacao() {
             preco: true,
             desconto: true,
             preco_desconto: true,
-
+            categoria: true,
         }
 
     });
@@ -58,7 +60,7 @@ export async function buscarProdutosCachorrosBrinquedos() {
             preco: true,
             desconto: true,
             preco_desconto: true,
-
+            categoria: true,
         }
     });
 
@@ -78,7 +80,7 @@ export async function buscarProdutosCachorrosHigiene() {
             preco: true,
             desconto: true,
             preco_desconto: true,
-
+            categoria: true,
         }
 
     });

@@ -1,6 +1,7 @@
 "use client"
 import { ImageProps } from "@/utils/produtos.type";
 import { useState, createContext } from "react";
+import toast from "react-hot-toast";
 
 
 
@@ -9,6 +10,7 @@ interface CartContextData {
     cartAmount: number;
     addItemCart: (newItem: CartProps) => void;
     removeItemCart: (item: CartProps) => void;
+    removeItem: (item: CartProps) => void;
     total: string;
 }
 
@@ -21,7 +23,7 @@ export interface CartProps extends CartTotalProp {
     preco_desconto?: number | null;
     image_url: ImageProps[] | null;
     quantidade: number;
-
+    categoria?: string;
 
 }
 
@@ -55,17 +57,30 @@ function CartProvider({ children }: { children: React.ReactNode }) {
         }
         setCart(products => [...products, data]);
         getTotalProducts([...cart, data]);
+        { toast.success("Produto adicionado ao carrinho com sucesso!") }
     }
     function removeItemCart(item: CartProps) {
         const findIndex = cart.findIndex(product => product.id === item.id)
         if (cart[findIndex]?.quantidade > 1) {
             let cartList = cart;
             cartList[findIndex].quantidade = cartList[findIndex].quantidade - 1;
-            cartList[findIndex].total = cartList[findIndex].quantidade - cartList[findIndex].preco;
+            cartList[findIndex].total = cartList[findIndex]?.total!! - cartList[findIndex].preco;
             setCart(cartList);
             getTotalProducts(cartList);
             return;
 
+        }
+    }
+
+    function removeItem(item: CartProps) {
+        const findIndex = cart.findIndex(product => product.id === item.id)
+        if (findIndex !== -1) {
+            let cartList = cart;
+            let filterList = cartList.filter(product => product.id !== item.id);
+            setCart(filterList);
+            getTotalProducts(filterList);
+            { toast.success("Produto removido com sucesso!") }
+            return;
         }
     }
 
@@ -78,7 +93,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
 
 
     return (
-        <CartContext.Provider value={{ cart, cartAmount: cart.length, addItemCart, removeItemCart, total }}>
+        <CartContext.Provider value={{ cart, cartAmount: cart.length, addItemCart, removeItemCart, removeItem, total }}>
             {children}
         </CartContext.Provider>
     )

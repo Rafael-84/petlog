@@ -4,7 +4,9 @@ import { UserLogin } from "./userLogin";
 import { CartUser } from "../cart";
 import { PhoneIcon, MapPinAreaIcon, HeartIcon } from "@phosphor-icons/react/dist/ssr";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "@/contexts/CartContext";
+import { ShoppingCartIcon } from "@phosphor-icons/react";
 
 
 
@@ -15,7 +17,7 @@ export function Header() {
     const { status } = useSession();
 
     const [ativo, setAtivo] = useState<string>("");
-
+    const { cart } = useContext(CartContext);
 
 
     return (
@@ -36,7 +38,23 @@ export function Header() {
                     )}
                     <Link href="https://www.google.com/maps/place/Av. Nossa Sra. do Carmo, 1448 - São Pedro, Belo Horizonte - MG, 30330-000" target="_blank"><MapPinAreaIcon size={24} color="#6C0020" /></Link>
                     <Link href="https://wa.me/551140028922?text=Olá gostaria de mais informações" target="_blank"><PhoneIcon size={24} color="#6C0020" /></Link>
-                    <CartUser />
+                    {
+                        cart.length > 0 && (
+                            <Link href="/carrinho" className={`relative ${ativo === "/carrinho" ? "" : ""}`} onClick={() => setAtivo("/carrinho")}>
+                                <div className="relative">
+                                    <span className="absolute -top-2.5 left-3 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">{cart.length}</span>
+                                    <ShoppingCartIcon size={24} color="#6C0020" />
+                                </div>
+                            </Link>
+                        )
+                    }
+                    {
+                        cart.length === 0 && (
+                            <Link href="/carrinho" className={`relative ${ativo === "/carrinho" ? "" : ""}`} onClick={() => setAtivo("/carrinho")}>
+                                <ShoppingCartIcon size={24} color="#6C0020" />
+                            </Link>
+                        )
+                    }
                     <UserLogin />
                 </nav>
 

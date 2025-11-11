@@ -1,3 +1,4 @@
+
 import { PlusCircleIcon, MinusCircleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ProdutoProp } from "@/utils/produtos.type";
 import { getProductsDetail } from "./_actions/get-product-detail";
@@ -18,7 +19,7 @@ export default async function DetailsHome({ params }: PropsParams) {
     const detalhesDoProduto: ProdutoProp = await getProductsDetail(id) as ProdutoProp;
     console.log(detalhesDoProduto);
 
-    const { addItemCart } = useContext(CartContext);
+
 
     return (
         <main>

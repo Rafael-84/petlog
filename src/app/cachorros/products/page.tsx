@@ -6,7 +6,6 @@ import Link from "next/link";
 import { buscarProdutosCachorros } from "../_actions/_all-products/get-products";
 
 import { AddCart } from "@/components/addCart";
-import { CartProps } from "@/contexts/CartContext";
 
 
 interface PropsParams {
@@ -45,6 +44,7 @@ export default async function Cachorros() {
                                     </div>
                                 </Link>
                                 <AddCart item={item} />
+
                             </div>
                             <div className="w-full px-1 mt-2 flex flex-col items-start justify-between gap-2 relative min-h-[120px]">
                                 <p className=" text-sm pl-3">{item.nome}</p>

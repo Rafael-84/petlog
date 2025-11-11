@@ -1,11 +1,10 @@
-import { ProdutosProps } from "@/utils/produtos.type";
+import { ExibirProdutoProp } from "@/utils/produtos.type";
 import { allRecomended, allRecomendedDogs, allRecomendedCats, allRecomendedBirds } from "./_actions/get-recomended-products";
 import { RecomendadoCarousel } from "./RecomendadoCarousel";
-import { get } from "http";
 
 
 export interface RecomendadosProps {
-    products: ProdutosProps[]
+    products: ExibirProdutoProp[]
 }
 
 export async function Recomendado({ categoria }: { categoria: string }) {

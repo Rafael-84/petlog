@@ -7,11 +7,13 @@ export async function getAllProductsAves() {
             categoria: "passaros"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     })
@@ -26,11 +28,13 @@ export async function getRacoesAves() {
             subcategoria: "racao"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     })
@@ -45,11 +49,13 @@ export async function getBriquendosAves() {
             subcategoria: "brinquedos"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     })
@@ -64,11 +70,13 @@ export async function getHigieneAves() {
             subcategoria: "higiene"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     })
@@ -82,6 +90,7 @@ export async function buscarDetalhesProdutosBird(id: string) {
             id: id
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,

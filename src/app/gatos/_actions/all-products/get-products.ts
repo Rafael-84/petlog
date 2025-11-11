@@ -7,11 +7,13 @@ export async function allProductsCats() {
             categoria: "gatos"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     });
@@ -27,11 +29,13 @@ export async function getRacoesCats() {
             subcategoria: "racao"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     })
@@ -46,11 +50,13 @@ export async function getBrinquedosCats() {
             subcategoria: "brinquedos"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     })
@@ -65,11 +71,13 @@ export async function getHigieneCats() {
             subcategoria: "higiene"
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,
             desconto: true,
             preco_desconto: true,
+            categoria: true,
 
         }
     })
@@ -83,6 +91,7 @@ export async function buscarDetalhesProdutosCats(id: string) {
             id: id
         },
         select: {
+            id: true,
             nome: true,
             image_url: true,
             preco: true,

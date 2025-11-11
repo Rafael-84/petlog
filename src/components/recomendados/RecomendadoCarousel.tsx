@@ -11,6 +11,7 @@ import { ProdutoProp } from "@/utils/produtos.type";
 import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
+import { AddCart } from "../addCart";
 
 
 
@@ -55,10 +56,7 @@ export function RecomendadoCarousel({ produto }: { produto: ProdutoProp[] }) {
                                                         <Image src={item.image_url && item.image_url.length > 0 ? item.image_url[0].url : ""} alt="Imagem do Produto" className="object-cover" fill priority />
                                                     </div>
                                                 </Link>
-                                                <div className="flex items-center justify-between px-4">
-                                                    <HeartIcon size={24} />
-                                                    <button ><PlusCircleIcon weight="fill" size={24} color="#8B0029" className="cursor-pointer" /></button>
-                                                </div>
+                                                <AddCart item={item} />
                                             </div>
                                         </div>
                                         <div className="flex-1 w-40 mt-2 flex flex-col items-start justify-between gap-2 relative  ">
