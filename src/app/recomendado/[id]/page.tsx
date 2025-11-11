@@ -4,8 +4,7 @@ import { ProdutoProp } from "@/utils/produtos.type";
 import { getProductsDetail } from "./_actions/get-product-detail";
 import { Container } from "@/components/container";
 import { ImageDetail } from "../_components";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/CartContext";
+
 
 interface PropsParams {
     params: {
