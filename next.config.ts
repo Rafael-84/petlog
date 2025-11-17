@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "firebasestorage.googleapis.com"
+      },
+      {
+        protocol: "https",
+        hostname: "cdn-icons-png.flaticon.com"
+      },
+      {
+        protocol: "https",
+        hostname: "cdn3.iconfinder.com"
       }
     ]
   }

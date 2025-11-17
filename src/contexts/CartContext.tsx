@@ -10,8 +10,9 @@ interface CartContextData {
     cartAmount: number;
     addItemCart: (newItem: CartProps) => void;
     removeItemCart: (item: CartProps) => void;
-    removeItem: (item: CartProps) => void;
+    deleteItem: (item: CartProps) => void;
     total: string;
+
 }
 
 export interface CartProps extends CartTotalProp {
@@ -37,6 +38,7 @@ export const CartContext = createContext({} as CartContextData);
 function CartProvider({ children }: { children: React.ReactNode }) {
     const [cart, setCart] = useState<CartProps[]>([]);
     const [total, setTotal] = useState("");
+
 
     function addItemCart(newItem: CartProps) {
 
@@ -72,7 +74,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
         }
     }
 
-    function removeItem(item: CartProps) {
+    function deleteItem(item: CartProps) {
         const findIndex = cart.findIndex(product => product.id === item.id)
         if (findIndex !== -1) {
             let cartList = cart;
@@ -91,9 +93,8 @@ function CartProvider({ children }: { children: React.ReactNode }) {
         setTotal(resultadoFormatado)
     }
 
-
     return (
-        <CartContext.Provider value={{ cart, cartAmount: cart.length, addItemCart, removeItemCart, removeItem, total }}>
+        <CartContext.Provider value={{ cart, cartAmount: cart.length, addItemCart, removeItemCart, deleteItem, total }}>
             {children}
         </CartContext.Provider>
     )

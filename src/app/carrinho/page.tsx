@@ -12,7 +12,7 @@ import { CartSelect } from "./_components";
 export default function Cart() {
 
 
-    const { cart, addItemCart, removeItemCart, removeItem, total } = useContext(CartContext);
+    const { cart, addItemCart, removeItemCart, deleteItem, total } = useContext(CartContext);
 
 
 
@@ -68,7 +68,7 @@ export default function Cart() {
                                                                 <p className="flex-2 flex items-center justify-center text-gray-700 font-medium">{item.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
 
                                                                 <div className="flex items-center justify-center">
-                                                                    <button onClick={() => removeItem(item)} className="text-[#6C0020] hover:text-[#C7033D] duration-300 cursor-pointer"><TrashIcon size={24} /></button>
+                                                                    <button onClick={() => deleteItem(item)} className="text-[#6C0020] hover:text-[#C7033D] duration-300 cursor-pointer"><TrashIcon size={24} /></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -110,7 +110,7 @@ export default function Cart() {
                                             </div>
                                         </div>
                                         <div className="flex flex-col space-y-4 mt-2">
-                                            <button className=" w-full py-2 bg-white border border-[#C7033D] rounded-md text-[#C7033D] cursor-pointer hover:bg-[#C7033D] hover:border-none  hover:text-white duration-300">Continuar para o pagamento</button>
+                                            <button className=" w-full py-2 bg-white border border-[#C7033D] rounded-md text-[#C7033D] cursor-pointer hover:bg-[#ffbcd073]     duration-300">Continuar para o pagamento</button>
 
                                             <button className=" w-full py-2 bg-[#C7033D] border-0 rounded-md text-white cursor-pointer hover:bg-[#6C0020] hover:border hover:border-[#C7033D] hover:text-white duration-300"> + Adicionar mais produtos</button>
                                         </div>

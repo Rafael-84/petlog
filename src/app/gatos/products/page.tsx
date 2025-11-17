@@ -1,7 +1,6 @@
 import { ProdutoProp } from "@/utils/produtos.type";
 import { allProductsCats } from "../_actions/all-products/get-products"
 import Image from "next/image";
-import { HeartIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { AddCart } from "@/components/addCart";
 

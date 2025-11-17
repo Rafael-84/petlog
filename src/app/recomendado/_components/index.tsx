@@ -1,10 +1,10 @@
 "use client"
 import { useState } from "react";
-import { ProdutoProp } from "@/utils/produtos.type";
+import { ExibirProdutoProp } from "@/utils/produtos.type";
 import Image from "next/image";
 
 
-export function ImageDetail({ produto }: { produto: ProdutoProp }) {
+export function ImageDetail({ produto }: { produto: ExibirProdutoProp }) {
 
     const itemImage = produto.image_url && produto.image_url.length > 0 ? produto?.image_url : null;
     console.log(itemImage);

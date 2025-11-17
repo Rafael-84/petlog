@@ -3,6 +3,7 @@ import { buscarDetalhesProdutosBird } from "../../_actions/all-products/get-prod
 import { Container } from "@/components/container";
 import { MinusCircleIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ImageDetail } from "@/app/aves/_components/imageDetail";
+import { ButtonCart } from "@/components/buttonCart";
 
 
 interface PropsParams {
@@ -45,12 +46,8 @@ export default async function DetailsAves({ params }: PropsParams) {
                                 )}
                             </div>
                             <div className="flex items-center gap-8 mt-10">
-                                <div className="border border-slate-300 w-24 items-center justify-between flex px-2 py-2 rounded-md">
-                                    <button className="cursor-pointer"><MinusCircleIcon size={25} color="#6C0020" /></button>
-                                    <span className="text-lg text-slate-600 font-medium">1</span>
-                                    <button className="cursor-pointer"><PlusCircleIcon size={25} color="#6C0020" /></button>
-                                </div>
-                                <button className="bg-green-500 px-4 py-2 rounded-md text-white font-bold cursor-pointer hover:bg-green-600 duration-300">Adicionar ao carrinho</button>
+                                <ButtonCart item={detail} />
+
                             </div>
 
                         </div>
