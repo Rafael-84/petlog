@@ -6,7 +6,7 @@ import { MinusCircleIcon, PlusCircleIcon } from "@phosphor-icons/react/dist/ssr"
 import { ButtonCart } from "@/components/buttonCart";
 
 
-interface PropsParams {
+export interface PropsParams {
     params: {
         id: string;
     }
